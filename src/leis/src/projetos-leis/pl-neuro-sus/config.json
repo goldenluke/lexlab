@@ -1,8 +1,28 @@
 {
   "id": "pl-neuro-sus",
-  "titulo": "Garantia de Acesso à Avaliação Neuropsicológica no Sistema Único de Saúde (SUS)",
+
+  "titulo": {
+    "pt": "Garantia de Acesso à Avaliação Neuropsicológica no Sistema Único de Saúde (SUS)",
+    "en": "Guarantee of Access to Neuropsychological Assessment in the Public Health System (SUS)"
+  },
+
   "autor": "Comunidade de Saúde e Direito",
+
   "status": "Em Desenvolvimento",
-  "tags": ["Saúde", "SUS", "Neuropsicologia"],
-  "github_repo": "https://github.com/goldenluke/lexlab"
+
+  "tags": [
+    "Saúde",
+    "SUS",
+    "Neuropsicologia"
+  ],
+
+  "github_repo": "https://github.com/goldenluke/lexlab",
+
+  "esfera": "Federal",
+
+  "localizacao": {
+    "pais": "Brasil",
+    "estado": "Todos",
+    "municipio": "Todos"
+  }
 }
