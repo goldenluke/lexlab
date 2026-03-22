@@ -5,8 +5,30 @@ import path from 'node:path';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FilterBar from '../components/FilterBar.astro';
 
+// i18n
+import { getLangFromUrl } from '../i18n/utils';
+import { tField } from '../utils/tField';
+
+const lang = getLangFromUrl(Astro.url);
+
 const REPO_URL = "https://github.com/goldenluke/lexlab";
 
+// =========================
+// HELPER GLOBAL (FIX REAL)
+// =========================
+function tField(field) {
+  if (!field) return '';
+
+  if (typeof field === 'object') {
+    return field[lang] || field.pt || field.en || '';
+  }
+
+  return field;
+}
+
+// =========================
+// LOAD PROJECTS
+// =========================
 const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
 let projects = [];
@@ -23,19 +45,17 @@ if (fs.existsSync(lawsDir)) {
         if (!fs.existsSync(configPath)) return null;
 
         const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-        return { ...config, id: folder };
+
+        return {
+          ...config,
+          id: folder,
+          tituloFormatado: tField(config.titulo)
+        };
       } catch {
         return null;
       }
     })
     .filter(Boolean);
-}
-
-function getTitulo(titulo) {
-  if (typeof titulo === 'object') {
-    return titulo.pt || titulo.en;
-  }
-  return titulo;
 }
 ---
 
@@ -48,16 +68,15 @@ function getTitulo(titulo) {
 
     <div class="relative max-w-4xl mx-auto text-center">
 
-<h1 class="lexlab-hero">
-  <span class="lexlab-main">LEX</span>
-  <span class="lexlab-accent">LAB</span>
-</h1>
+      <h1 class="lexlab-hero">
+        <span class="lexlab-main">LEX</span>
+        <span class="lexlab-accent">LAB</span>
+      </h1>
 
       <p class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300 font-serif italic max-w-2xl mx-auto">
         A inteligência coletiva codificando o futuro legislativo.
       </p>
 
-      <!-- BOTÕES -->
       <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
 
         <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
@@ -98,7 +117,6 @@ function getTitulo(titulo) {
       </p>
     )}
 
-    <!-- GRID RESPONSIVO REAL -->
     <div class="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
 
       {projects.map(p => (
@@ -121,9 +139,9 @@ function getTitulo(titulo) {
 
           </div>
 
-          <!-- TÍTULO -->
+          <!-- 🔥 TÍTULO CORRIGIDO -->
           <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 leading-snug group-hover:text-blue-600 transition">
-            {getTitulo(p.titulo)}
+            {p.tituloFormatado}
           </h2>
 
           <!-- AUTOR -->

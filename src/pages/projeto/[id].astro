@@ -60,10 +60,10 @@ const docs = loadSections('docs');
 const artigos = loadSections('artigos');
 
 // Metadados para SEO
-const seoDescription = `Análise e redação colaborativa: ${config.titulo}. Abrangência: ${config.esfera || 'Nacional'}. Local: ${config.localizacao?.municipio || 'Brasil'}.`;
+const seoDescription = `Análise e redação colaborativa: ${tField(config.titulo, lang)}. Abrangência: ${config.esfera || 'Nacional'}. Local: ${config.localizacao?.municipio || 'Brasil'}.`;
 ---
 
-<BaseLayout title={config.titulo} description={seoDescription}>
+<BaseLayout title={tField(config.titulo, lang)} description={seoDescription}>
   <main class="max-w-7xl mx-auto px-4 py-12">
 
     <header class="mb-16">
@@ -86,7 +86,7 @@ const seoDescription = `Análise e redação colaborativa: ${config.titulo}. Abr
             </div>
 
             <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight tracking-tighter uppercase font-sans italic">
-                {config.titulo}
+                {tField(config.titulo, lang)}
             </h1>
 
             {config.localizacao && (

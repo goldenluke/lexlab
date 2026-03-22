@@ -8,7 +8,9 @@ import GithubAuth from '../components/GithubAuth.astro';
 // i18n
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { languages } from '../i18n/ui';
+import { tField } from '../utils/tField';
 
+const safeTitle = tField(title, lang);
 interface Props {
 	title: string;
 	description?: string;
@@ -35,7 +37,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="generator" content={Astro.generator} />
 
-	<title>{title} | LEXLAB</title>
+	<title>{tField(title, lang)} | LEXLAB</title>
 	<meta name="description" content={description} />
 	<link rel="canonical" href={canonicalURL} />
 
