@@ -105,3 +105,12 @@
 .lexlab-hero:hover .lexlab-accent {
     transform: translateY(-2px);
 }
+
+.group:hover .edit-btn {
+    opacity: 1;
+}
+
+.edit-btn {
+    opacity: 0;
+    transition: 0.2s;
+}
