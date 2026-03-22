@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 // Pega o caminho absoluto da raiz do projeto independente de onde o script é chamado
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
-const LEIS_DIR = path.join(ROOT_DIR, 'src', 'projetos-leis');
+const LEIS_DIR = path.join(ROOT_DIR, 'src', 'leis', 'src', 'projetos-leis');
 
 const REQUIRED_CONFIG_FIELDS = ['id', 'titulo', 'autor', 'status', 'tags', 'github_repo'];
 
