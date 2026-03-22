@@ -1,3 +1,19 @@
-<div class="mt-10 text-sm text-slate-400">
-  <p>Histórico de Revisões (placeholder)</p>
+---
+const { revisions = [] } = Astro.props;
+---
+
+<div class="mt-10">
+  <h3 class="font-bold mb-4">Histórico</h3>
+
+  {revisions.length === 0 ? (
+    <p class="text-sm text-gray-400">Sem histórico</p>
+  ) : (
+    revisions.map(r => (
+      <div class="mb-4 border-l-2 pl-3 border-blue-500">
+        <div class="font-bold text-sm">{r.autor}</div>
+        <div class="text-xs text-gray-400">{r.data}</div>
+        <div class="text-sm">{r.mensagem}</div>
+      </div>
+    ))
+  )}
 </div>
