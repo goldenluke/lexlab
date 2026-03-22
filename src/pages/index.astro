@@ -14,19 +14,6 @@ const lang = getLangFromUrl(Astro.url);
 const REPO_URL = "https://github.com/goldenluke/lexlab";
 
 // =========================
-// HELPER GLOBAL (FIX REAL)
-// =========================
-function tField(field) {
-  if (!field) return '';
-
-  if (typeof field === 'object') {
-    return field[lang] || field.pt || field.en || '';
-  }
-
-  return field;
-}
-
-// =========================
 // LOAD PROJECTS
 // =========================
 const lawsDir = path.resolve('./src/leis/src/projetos-leis');
@@ -49,7 +36,7 @@ if (fs.existsSync(lawsDir)) {
         return {
           ...config,
           id: folder,
-          tituloFormatado: tField(config.titulo)
+          tituloFormatado: tField(config.titulo, lang) // 🔥 CORRETO
         };
       } catch {
         return null;
@@ -139,7 +126,7 @@ if (fs.existsSync(lawsDir)) {
 
           </div>
 
-          <!-- 🔥 TÍTULO CORRIGIDO -->
+          <!-- TÍTULO -->
           <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 leading-snug group-hover:text-blue-600 transition">
             {p.tituloFormatado}
           </h2>

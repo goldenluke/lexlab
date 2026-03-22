@@ -1,13 +1,30 @@
-export function tField(field: any, lang: string = 'pt'): string {
+export function tField(field: unknown, lang: string = 'pt'): string {
+  // null ou undefined
   if (field === null || field === undefined) return '';
 
-  if (typeof field === 'object') {
-    const value = field[lang] ?? field.pt ?? field.en;
+  // string direta
+  if (typeof field === 'string') return field;
 
+  // objeto multilíngue
+  if (typeof field === 'object') {
+    const obj = field as Record<string, unknown>;
+
+    const value =
+    obj[lang] ??
+    obj['pt'] ??
+    obj['en'];
+
+    // se já for string → retorna
     if (typeof value === 'string') return value;
 
-    return JSON.stringify(value);
+    // fallback seguro (evita [object Object])
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return '';
+    }
   }
 
+  // número, boolean etc
   return String(field);
 }

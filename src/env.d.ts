@@ -1,13 +1,8 @@
-export function tField(field: any, lang: string = 'pt'): string {
-    if (field === null || field === undefined) return '';
+/// <reference path="../.astro/types.d.ts" />
+import type { tField } from './utils/tField';
 
-    if (typeof field === 'object') {
-        const value = field[lang] ?? field.pt ?? field.en;
-
-        if (typeof value === 'string') return value;
-
-        return JSON.stringify(value); // fallback seguro
+declare namespace App {
+    interface Locals {
+        tField: typeof tField;
     }
-
-    return String(field);
 }
