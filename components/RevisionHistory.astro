@@ -1,0 +1,60 @@
+---
+// src/components/RevisionHistory.astro
+const { repo, projectId } = Astro.props;
+
+// Limpar a URL do repo para usar na API (ex: goldenluke/lexlab)
+const repoPath = repo.replace("https://github.com/", "");
+const apiUrl = `https://api.github.com/repos/${repoPath}/commits?path=src/leis/src/projetos-leis/${projectId}`;
+
+let commits = [];
+
+try {
+  const response = await fetch(apiUrl, {
+    headers: { 'User-Agent': 'LexLab-Platform' }
+  });
+  if (response.ok) {
+    commits = (await response.json()).slice(0, 5); // Pegamos as 5 últimas mudanças
+  }
+} catch (e) {
+  console.error("Erro ao buscar histórico:", e);
+}
+
+const formatDate = (dateStr) => {
+  return new Date(dateStr).toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+};
+---
+
+<div class="mt-8 p-6 bg-slate-50 rounded-[2rem] border border-slate-200">
+  <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 flex items-center gap-2">
+    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    Rastro de Auditoria (Git)
+  </h4>
+
+  <div class="space-y-6">
+    {commits.length > 0 ? commits.map((c) => (
+      <div class="flex gap-4 relative">
+        <img src={c.author?.avatar_url} class="w-8 h-8 rounded-full border border-white shadow-sm z-10" />
+        <div class="flex-1">
+          <p class="text-xs font-bold text-slate-800 leading-tight">
+            {c.commit.message.split('\n')[0]}
+          </p>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="text-[9px] text-blue-600 font-black uppercase">{c.author?.login || 'anonimo'}</span>
+            <span class="text-[9px] text-slate-400">•</span>
+            <span class="text-[9px] text-slate-400 uppercase font-medium">{formatDate(c.commit.author.date)}</span>
+          </div>
+        </div>
+      </div>
+    )) : (
+      <p class="text-[10px] text-slate-400 italic">Iniciando rastro digital...</p>
+    )}
+  </div>
+
+  <a href={`${repo}/commits/main/src/leis/src/projetos-leis/${projectId}`} target="_blank" class="block mt-6 pt-4 border-t border-slate-200 text-center text-[9px] font-black text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest">
+    Ver histórico completo de fé pública
+  </a>
+</div>

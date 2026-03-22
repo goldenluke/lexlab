@@ -3,19 +3,19 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { marked } from 'marked';
 
-// Importações com caminhos corrigidos para src/pages/projeto/[id].astro
+// Importações de componentes de interface e dados
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EditButton from '../../components/EditButton.astro';
 import Contributors from '../../components/Contributors.astro';
 import Comments from '../../components/Comments.astro';
+import RevisionHistory from '../../components/RevisionHistory.astro';
 
-// 1. Definição das rotas dinâmicas (getStaticPaths)
-// Aponta para a pasta onde as leis residem na sua estrutura atual
+// 1. Geração de Rotas Estáticas baseadas nas pastas de leis
 export async function getStaticPaths() {
   const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
   if (!fs.existsSync(lawsDir)) {
-    console.warn("⚠️ [Aviso]: Diretório src/leis/src/projetos-leis não encontrado.");
+    console.warn("⚠️ [LexLab]: Diretório de leis não encontrado no caminho especificado.");
     return [];
   }
 
@@ -31,26 +31,26 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const projectPath = path.resolve(`./src/leis/src/projetos-leis/${id}`);
 
-// 2. Carregar Configurações (Metadados) do Projeto
+// 2. Carregamento e Validação do config.json
 const configPath = path.join(projectPath, 'config.json');
 if (!fs.existsSync(configPath)) {
   return Astro.redirect('/404');
 }
 const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 
-// 3. Função para carregar as seções de Markdown (Docs e Artigos)
+// 3. Função para carregar seções Markdown (Docs e Artigos)
 function loadSections(subfolder: string) {
   const dir = path.join(projectPath, subfolder);
   if (!fs.existsSync(dir)) return [];
 
   return fs.readdirSync(dir)
     .filter(file => file.endsWith('.md'))
-    .sort() // Mantém a ordem 01, 02, 03...
+    .sort()
     .map(file => {
       const content = fs.readFileSync(path.join(dir, file), 'utf-8');
       return {
         html: marked.parse(content),
-        // Caminho exato para o GitHub (usado pelo EditButton)
+        // Caminho relativo para o GitHub (usado pelo botão Sugerir Edição)
         gitPath: `src/leis/src/projetos-leis/${id}/${subfolder}/${file}`
       };
     });
@@ -59,34 +59,64 @@ function loadSections(subfolder: string) {
 const docs = loadSections('docs');
 const artigos = loadSections('artigos');
 
-// Descrição para SEO
-const seoDescription = `Participe da redação colaborativa: ${config.titulo}. Proposto por ${config.autor} via LexLab.`;
+// Metadados para SEO
+const seoDescription = `Análise e redação colaborativa: ${config.titulo}. Abrangência: ${config.esfera || 'Nacional'}. Local: ${config.localizacao?.municipio || 'Brasil'}.`;
 ---
 
 <BaseLayout title={config.titulo} description={seoDescription}>
   <main class="max-w-7xl mx-auto px-4 py-12">
 
-    <!-- CABEÇALHO DO PROJETO -->
     <header class="mb-16">
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
         <div class="max-w-4xl">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest mb-6 shadow-xl shadow-blue-100">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                </span>
-                {config.status}
+            <div class="flex flex-wrap gap-2 mb-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-100">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                    {config.status}
+                </div>
+
+                {config.esfera && (
+                  <div class="px-4 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest border border-slate-700">
+                    {config.esfera}
+                  </div>
+                )}
             </div>
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight tracking-tighter uppercase font-sans">
+
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight tracking-tighter uppercase font-sans italic">
                 {config.titulo}
             </h1>
+
+            {config.localizacao && (
+              <div class="flex flex-wrap items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-2xl w-fit mb-6">
+                <span class="text-lg">📍</span>
+                <span class="text-xs font-black text-emerald-800 uppercase tracking-wider">{config.localizacao.pais}</span>
+
+                {config.localizacao.estado && config.localizacao.estado !== 'Todos' && (
+                  <>
+                    <svg class="w-3 h-3 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                    <span class="text-xs font-bold text-emerald-700 uppercase tracking-wide">{config.localizacao.estado}</span>
+                  </>
+                )}
+
+                {config.localizacao.municipio && config.localizacao.municipio !== 'Todos' && (
+                  <>
+                    <svg class="w-3 h-3 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                    <span class="text-xs font-medium text-emerald-600 uppercase tracking-wide">{config.localizacao.municipio}</span>
+                  </>
+                )}
+              </div>
+            )}
+
             <p class="text-xl text-slate-500 font-serif italic">
-                Proposição: <span class="text-slate-800 font-bold not-italic">{config.autor}</span>
+                Relatoria Coletiva: <span class="text-slate-800 font-bold not-italic">{config.autor}</span>
             </p>
         </div>
 
         <div class="flex flex-wrap gap-2 justify-center lg:justify-end">
-            {config.tags && config.tags.map((tag: string) => (
+            {config.tags?.map((tag: string) => (
               <span class="px-3 py-1 bg-white border border-slate-200 text-slate-400 rounded-lg text-[10px] font-bold uppercase tracking-widest">
                 #{tag}
               </span>
@@ -98,18 +128,16 @@ const seoDescription = `Participe da redação colaborativa: ${config.titulo}. P
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-      <!-- COLUNA DA ESQUERDA: O DOCUMENTO -->
       <div class="lg:col-span-8 space-y-12">
         <div class="bg-white rounded-[3rem] shadow-2xl shadow-slate-200 border border-slate-100 overflow-hidden">
 
           <div class="p-8 md:p-16 lg:p-20">
 
-            <!-- SEÇÃO I: FUNDAMENTAÇÃO (Docs) -->
             {docs.length > 0 && (
               <section class="mb-24">
-                <div class="flex items-center gap-4 mb-12 no-print">
-                    <span class="bg-blue-600 text-white font-black px-3 py-1 rounded-lg text-xs">I</span>
-                    <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Exposição de Motivos</h2>
+                <div class="flex items-center gap-4 mb-12 no-print border-b border-slate-50 pb-4">
+                    <span class="bg-blue-600 text-white font-black px-3 py-1 rounded-lg text-xs italic">I</span>
+                    <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Exposição de Motivos e Fundamentação</h2>
                 </div>
                 {docs.map(doc => (
                   <div class="relative group mb-16 last:mb-0">
@@ -120,7 +148,6 @@ const seoDescription = `Participe da redação colaborativa: ${config.titulo}. P
               </section>
             )}
 
-            <!-- DIVISOR ESTILIZADO -->
             <div class="py-12 flex items-center justify-center no-print">
                 <div class="h-px w-24 bg-slate-100"></div>
                 <div class="px-6 text-slate-300">
@@ -131,12 +158,11 @@ const seoDescription = `Participe da redação colaborativa: ${config.titulo}. P
                 <div class="h-px w-24 bg-slate-100"></div>
             </div>
 
-            <!-- SEÇÃO II: ARTIGOS (artigos) -->
             {artigos.length > 0 && (
               <section>
-                <div class="flex items-center gap-4 mb-12 no-print">
-                    <span class="bg-blue-600 text-white font-black px-3 py-1 rounded-lg text-xs">II</span>
-                    <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Texto Normativo</h2>
+                <div class="flex items-center gap-4 mb-12 no-print border-b border-slate-50 pb-4">
+                    <span class="bg-blue-600 text-white font-black px-3 py-1 rounded-lg text-xs italic">II</span>
+                    <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Dispositivos Normativos</h2>
                 </div>
                 <div class="space-y-8">
                   {artigos.map(art => (
@@ -150,61 +176,57 @@ const seoDescription = `Participe da redação colaborativa: ${config.titulo}. P
             )}
           </div>
 
-          <div class="bg-slate-900 p-12 text-center">
+          <div class="bg-slate-900 p-12 text-center border-t border-slate-800">
             <p class="text-slate-500 font-black uppercase text-[9px] tracking-[0.3em] mb-3">Fim do Rascunho Legislativo</p>
-            <p class="text-white/30 text-[10px] italic max-w-xs mx-auto">
-                Este documento é um rascunho dinâmico gerado pela LexLab Engine sob princípios do Direito Achado na Rua.
+            <p class="text-white/30 text-[10px] italic max-w-sm mx-auto font-serif">
+                Este documento é uma minuta pública auditada pela comunidade LexLab e versionada via Git.
             </p>
           </div>
         </div>
 
-        <!-- FÓRUM DE DEBATE (COMMENTS) -->
         <Comments />
       </div>
 
-      <!-- COLUNA DA DIREITA: METADADOS E GOVERNANÇA -->
       <aside class="lg:col-span-4 space-y-8 no-print">
         <div class="sticky top-28 space-y-8">
 
-          <!-- Card Tutorial Rápido -->
           <div class="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl border border-slate-800">
-            <h4 class="font-black text-[10px] uppercase tracking-[0.2em] mb-4 text-blue-400">Como auditar</h4>
-            <p class="text-sm leading-relaxed text-slate-400 mb-6">
-                Você pode propor alterações técnicas clicando nos botões de edição dentro de cada card. Sua sugestão será enviada para análise técnica.
+            <h4 class="font-black text-[10px] uppercase tracking-[0.2em] mb-4 text-blue-400">Direito Achado na Rua</h4>
+            <p class="text-sm leading-relaxed text-slate-400 mb-6 font-serif italic">
+                A transparência técnica é a garantia da soberania. Use o motor do GitHub para protocolar melhorias neste rascunho.
             </p>
-            <a href="/como-contribuir" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-xs font-bold transition-all uppercase tracking-widest">
-                Ver manual completo
+            <a href="/como-contribuir" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-xs font-bold transition-all uppercase tracking-widest shadow-lg shadow-blue-900">
+                Guia do Colaborador
             </a>
           </div>
 
-          <!-- Módulo de Contribuidores do GitHub -->
           <Contributors repo={config.github_repo} />
 
-          <!-- Metadados Técnicos -->
+          <RevisionHistory repo={config.github_repo} projectId={id} />
+
           <div class="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm">
-            <h4 class="font-black text-[10px] text-slate-400 uppercase tracking-widest mb-6 border-b pb-4">Identificação</h4>
+            <h4 class="font-black text-[10px] text-slate-400 uppercase tracking-widest mb-6 border-b pb-4">Protocolo Técnico</h4>
             <div class="space-y-5 text-sm">
                 <div>
-                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Identificador</label>
+                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Identificador Único</label>
                     <code class="text-blue-600 font-mono font-bold bg-blue-50 px-2 py-1 rounded-md">{config.id}</code>
                 </div>
                 <div>
-                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Repositório Originário</label>
-                    <a href={config.github_repo} target="_blank" class="text-slate-700 font-bold hover:text-blue-600 underline break-all truncate block">
-                        GitHub Source
+                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Fonte da Verdade</label>
+                    <a href={config.github_repo} target="_blank" class="text-slate-700 font-bold hover:text-blue-600 underline truncate block text-xs">
+                        Código-Fonte Legislativo
                     </a>
                 </div>
-                <div>
-                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Pacto Federativo</label>
-                    <span class="text-green-600 font-bold uppercase text-xs">Respeitado (LINDB)</span>
+                <div class="flex items-center gap-2 mt-4">
+                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span class="text-green-700 font-bold uppercase text-[9px] tracking-wider">Integridade Validada (Linter)</span>
                 </div>
             </div>
           </div>
 
-          <!-- Ação Principal -->
-          <button onclick="window.print()" class="w-full py-5 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3">
+          <button onclick="window.print()" class="w-full py-5 bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-            Imprimir PDF
+            Baixar Cópia Oficial (PDF)
           </button>
         </div>
       </aside>

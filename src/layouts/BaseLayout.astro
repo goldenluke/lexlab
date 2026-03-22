@@ -1,11 +1,13 @@
 ---
-// 1. Importação dos Estilos Globais (Tailwind + Tipografia Jurídica)
+// src/layouts/BaseLayout.astro
 import '../styles/global.css';
-
-// 2. Importação de Componentes Estruturais
 import Search from '../components/Search.astro';
 import AdminTrigger from '../components/AdminTrigger.astro';
 import GithubAuth from '../components/GithubAuth.astro';
+
+// Importações de Tradução
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { languages } from '../i18n/ui';
 
 interface Props {
 	title: string;
@@ -19,40 +21,24 @@ const {
     image = "/web-app-manifest-512x512.png"
 } = Astro.props;
 
-// Lógica de URLs para SEO
+// Lógica de i18n no servidor
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
-const socialImageURL = new URL(image, Astro.site || 'http://localhost:4321');
 ---
 
 <!DOCTYPE html>
-<html lang="pt-br" class="h-full scroll-smooth">
+<html lang={lang} class="h-full scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<!-- 1. FAVICON ESSENCIAL (Obrigatórios na raiz de /public) -->
-		<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
-		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=2" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
-
-		<!-- 2. WEB APP MANIFEST (Configuração PWA) -->
-		<link rel="manifest" href="/site.webmanifest" />
-		<meta name="theme-color" content="#2563eb" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-title" content="LexLab" />
-
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- 3. SEO E SOCIAL CARDS -->
 		<title>{title} | LEXLAB</title>
-		<meta name="title" content={`${title} | LEXLAB`} />
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content={`${title} | LEXLAB`} />
-		<meta property="og:image" content={new URL(image, Astro.site || 'http://localhost:4321')} />
-		<meta property="twitter:card" content="summary_large_image" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,13 +46,14 @@ const socialImageURL = new URL(image, Astro.site || 'http://localhost:4321');
 	</head>
 
 	<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-full flex flex-col">
+
 		<header class="no-print sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
 			<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4 md:gap-8">
+
 				<div class="flex items-center gap-3 shrink-0">
-					<a href="/" class="flex items-center gap-3 group">
-						<!-- Logo usando SVG para nitidez absoluta -->
+					<a href={`/?lang=${lang}`} class="flex items-center gap-3 group">
 						<div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex items-center justify-center">
-							<img src="/favicon.svg?v=2" alt="LexLab" class="w-full h-full p-1.5" />
+							<img src="/favicon.svg" alt="LexLab" class="w-full h-full p-1.5" />
 						</div>
 						<span class="font-black tracking-tighter text-2xl hidden sm:block uppercase italic">
 							LEX<span class="text-blue-600">LAB</span>
@@ -74,97 +61,96 @@ const socialImageURL = new URL(image, Astro.site || 'http://localhost:4321');
 					</a>
 				</div>
 
-				<!-- Componente de Busca Global -->
 				<div class="flex-1 max-w-xl hidden md:block">
 					<Search />
 				</div>
 
-				<!-- Navegação e Identidade -->
 				<nav class="flex items-center gap-3 md:gap-6 shrink-0">
-					<a href="/como-contribuir" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors hidden lg:block">Manual</a>
+					<a href={`/transparencia?lang=${lang}`} class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors">
+						{t('nav.transparency')}
+					</a>
+					<a href={`/como-contribuir?lang=${lang}`} class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors hidden lg:block">
+						{t('nav.manual')}
+					</a>
 
-                    <GithubAuth />
+					<div class="relative group inline-block">
+						<button class="flex items-center gap-2 px-3 py-2 bg-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 hover:bg-blue-600 hover:text-white transition-all">
+							<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5c2.778 7.078 8.088 14 14.249 14m-12.74-14L5 21" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+							{lang.toUpperCase()}
+						</button>
 
-					<button
-                        onclick="window.print()"
-                        class="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg hover:bg-blue-600 transition-all active:scale-95 flex items-center gap-2"
-                    >
-						<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                        PDF
-					</button>
+						<div class="absolute right-0 mt-2 w-40 bg-white border border-slate-200 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100] p-2">
+							{Object.entries(languages).map(([code, label]) => {
+                                // Criação dinâmica da URL mantendo o caminho mas mudando o lang
+                                const currentUrl = new URL(Astro.url.href);
+                                currentUrl.searchParams.set('lang', code);
+                                return (
+                                    <a
+                                        href={currentUrl.search}
+                                        class={`block px-4 py-2 text-[10px] font-bold rounded-lg transition-colors ${lang === code ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
+                                    >
+                                        {label}
+                                    </a>
+                                );
+                            })}
+						</div>
+					</div>
+
+					<GithubAuth />
 				</nav>
 			</div>
 		</header>
 
-		<!-- CONTEÚDO PRINCIPAL (Flex-grow garante o footer no rodapé) -->
 		<main class="flex-grow w-full">
 			<slot />
 		</main>
 
-		<!-- GATILHO DE DEPLOY -->
 		<AdminTrigger />
 
-		<!-- RODAPÉ (FOOTER) -->
 		<footer class="bg-white border-t border-slate-200 py-20 px-6 no-print mt-auto">
 			<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-                <!-- Logotipo no rodapé -->
-				<img src="/favicon.svg?v=1" alt="LexLab Logo" class="w-12 h-12 mb-6 opacity-40 grayscale hover:grayscale-0 transition-all cursor-default" />
-
 				<p class="font-black tracking-tighter text-2xl mb-4 uppercase italic">Lex<span class="text-blue-600">Lab</span></p>
 				<p class="text-slate-500 text-sm max-w-md leading-relaxed mb-10 font-serif italic">
-					Construindo a soberania legislativa por meio da transparência tecnológica e colaboração popular aberta.
+					{t('hero.subtitle')}
 				</p>
 
 				<div class="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-					<a href="/" class="hover:text-blue-600 transition-colors">Portal de Projetos</a>
-					<a href="/como-contribuir" class="hover:text-blue-600 transition-colors">Manual do Colaborador</a>
-					<a href="https://github.com/goldenluke/lexlab" target="_blank" class="hover:text-blue-600 transition-colors">GitHub Oficial</a>
+					<a href={`/?lang=${lang}`} class="hover:text-blue-600 transition-colors">{t('nav.home')}</a>
+					<a href={`/transparencia?lang=${lang}`} class="hover:text-blue-600 transition-colors">{t('nav.transparency')}</a>
+					<a href="https://github.com/goldenluke/lexlab" target="_blank" class="hover:text-blue-600 transition-colors">GitHub</a>
 				</div>
 
 				<div class="w-full pt-8 border-t border-slate-100 flex flex-col items-center">
 					<p class="text-[9px] text-slate-400 uppercase tracking-widest leading-loose">
-						Licença MIT © 2024 — LexLab & Comunidade <br/>
-						Conteúdo das minutas sob licença Creative Commons (CC BY-SA 4.0).
+						Licença MIT © 2026 — LexLab & Comunidade <br/>
+						{t('footer.rights')}
 					</p>
 				</div>
 			</div>
 		</footer>
 
-		<!-- ESTILOS GLOBAIS DE TIPOGRAFIA JURÍDICA -->
 		<style is:global>
-			/* Estilização Global para o conteúdo Markdown */
-			.markdown-content, .prose-legal {
-				@apply font-serif leading-relaxed text-slate-800 text-justify;
-			}
+			.markdown-content, .prose-legal { @apply font-serif leading-relaxed text-slate-800 text-justify; }
+			.markdown-content h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
+			.markdown-content h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
+			.markdown-content p { @apply mb-6 text-lg; }
 
-			.markdown-content h1, .prose-legal h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
-			.markdown-content h2, .prose-legal h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
-			.markdown-content h3, .prose-legal h3 { @apply font-sans font-bold text-xl mt-8 mb-3 text-slate-700; }
-			.markdown-content p, .prose-legal p { @apply mb-6 text-lg; }
-			.markdown-content b, .markdown-content strong, .prose-legal strong { @apply font-black text-slate-950; }
-
-			.markdown-content blockquote, .prose-legal blockquote {
-				@apply border-l-4 border-slate-300 pl-6 italic text-slate-500 my-10 bg-slate-50/50 py-4 pr-4 rounded-r-2xl shadow-sm;
-			}
-
-            .markdown-content ul, .prose-legal ul { @apply list-disc ml-6 mb-8 space-y-3; }
-            .markdown-content ol, .prose-legal ol { @apply list-decimal ml-6 mb-8 space-y-3; }
-
-			/* Estilos para a Barra de Rolagem Customizada */
-			::-webkit-scrollbar { width: 8px; }
-			::-webkit-scrollbar-track { background: #f8fafc; }
-			::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid #f8fafc; }
-			::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-			/* CONFIGURAÇÃO DE IMPRESSÃO (Papel A4 Oficial) */
 			@media print {
 				.no-print { display: none !important; }
-				body { background: white !important; padding: 0 !important; }
-				.markdown-content, .prose-legal { font-size: 12pt; color: black; line-height: 1.5; }
-				.bg-white, .bg-slate-50, .bg-slate-900 { background: transparent !important; color: black !important; box-shadow: none !important; border: none !important; }
-                header, footer { border: none !important; margin: 0 !important; padding: 0 !important; }
-                .markdown-content h2, .prose-legal h2 { border-left: 2px solid black !important; }
+				body { background: white !important; }
+				.markdown-content { font-size: 12pt; line-height: 1.5; color: black; }
 			}
 		</style>
+
+        <script is:inline>
+            // Salva no localStorage quando o parâmetro lang muda
+            const urlParams = new URLSearchParams(window.location.search);
+            const langParam = urlParams.get('lang');
+            if (langParam) {
+                localStorage.setItem('lexlab_lang', langParam);
+            }
+        </script>
 	</body>
 </html>

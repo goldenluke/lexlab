@@ -2,35 +2,38 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FilterBar from '../components/FilterBar.astro';
 
-// Configuração do Repositório para os botões de ação
+// Importações de Tradução
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+// Lógica de i18n
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Configuração do Repositório
 const REPO_URL = "https://github.com/goldenluke/lexlab";
 
-// CAMINHO SINCRONIZADO: Aponta para a estrutura profunda onde as leis residem
+// Caminho das Leis
 const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
-// Lógica de busca de projetos com tratamento de erros e filtros de segurança
 let projects = [];
 
 if (fs.existsSync(lawsDir)) {
   projects = fs.readdirSync(lawsDir)
     .filter(folder => {
       const fullPath = path.join(lawsDir, folder);
-      // Verifica se é uma pasta e se contém o config.json necessário
       try {
         return fs.lstatSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'config.json'));
-      } catch (e) {
-        return false;
-      }
+      } catch (e) { return false; }
     })
     .map(folder => {
       try {
         const configPath = path.join(lawsDir, folder, 'config.json');
         const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-        // Garante que o ID usado na URL seja o nome da pasta física
         return { ...configData, id: folder };
       } catch (e) {
-        console.error(`Erro ao carregar projeto na pasta ${folder}:`, e);
+        console.error(`Erro ao carregar projeto ${folder}:`, e);
         return null;
       }
     })
@@ -38,11 +41,10 @@ if (fs.existsSync(lawsDir)) {
 }
 ---
 
-<BaseLayout title="Portal de Legislação Colaborativa">
+<BaseLayout title={lang === 'pt' ? 'Início' : 'Home'}>
 
-  <!-- SEÇÃO HERO -->
-  <header class="bg-white border-b border-slate-200 pt-24 pb-36 px-4">
-    <div class="max-w-4xl mx-auto text-center">
+  <header class="bg-white border-b border-slate-200 pt-24 pb-36 px-4 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center relative z-10">
       <div class="inline-block bg-blue-600 text-white p-3 rounded-2xl mb-8 shadow-xl shadow-blue-100">
         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
@@ -52,31 +54,28 @@ if (fs.existsSync(lawsDir)) {
         LEX<span class="text-blue-600">LAB</span>
       </h1>
       <p class="text-xl md:text-2xl text-slate-500 font-serif italic max-w-2xl mx-auto leading-relaxed">
-        Plataforma de inteligência coletiva para a redação de leis fundamentadas no Direito Achado na Rua.
+        {t('hero.subtitle')}
       </p>
     </div>
   </header>
 
-  <!-- BARRA DE AÇÕES: Integração GitHub -->
-  <section class="max-w-6xl mx-auto px-4 -mt-16 mb-24">
+  <section class="max-w-6xl mx-auto px-4 -mt-16 mb-24 relative z-20">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-      <!-- Botão: Propor Novo Projeto -->
       <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
          target="_blank"
-         class="flex items-center gap-6 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl hover:bg-blue-700 transition-all group active:scale-95">
+         class="flex items-center gap-6 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl hover:bg-blue-700 transition-all group active:scale-95 border border-slate-800">
         <div class="bg-white/10 p-5 rounded-2xl group-hover:scale-110 transition-transform">
           <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
           </svg>
         </div>
         <div>
-          <h3 class="text-xl font-bold">Propor Novo Projeto</h3>
-          <p class="text-slate-400 text-sm">Inicie um rascunho de lei via GitHub.</p>
+          <h3 class="text-xl font-bold">{lang === 'pt' ? 'Protocolar Nova Lei' : 'Submit New Law'}</h3>
+          <p class="text-slate-400 text-sm">{lang === 'pt' ? 'Abra um rascunho via Git.' : 'Open a draft via Git.'}</p>
         </div>
       </a>
 
-      <!-- Botão: Relatar Falha -->
       <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
          target="_blank"
          class="flex items-center gap-6 p-8 bg-white border border-slate-200 text-slate-900 rounded-[2.5rem] shadow-2xl hover:border-red-400 transition-all group active:scale-95">
@@ -86,61 +85,65 @@ if (fs.existsSync(lawsDir)) {
           </svg>
         </div>
         <div>
-          <h3 class="text-xl font-bold">Relatar Erro ou Lacuna</h3>
-          <p class="text-sm text-slate-500">Denuncie brechas em proposições ativas.</p>
+          <h3 class="text-xl font-bold">{lang === 'pt' ? 'Relatar Brecha' : 'Report Gap'}</h3>
+          <p class="text-sm text-slate-500">{lang === 'pt' ? 'Audite falhas ativas.' : 'Audit active flaws.'}</p>
         </div>
       </a>
-
     </div>
   </section>
 
-  <!-- LISTA DE PROJETOS -->
+  <FilterBar />
+
   <main class="max-w-7xl mx-auto px-4 py-12">
     <div class="flex items-center justify-between mb-16 px-4">
-      <h2 class="text-3xl font-black text-slate-800 uppercase italic tracking-tighter">Projetos Ativos</h2>
+      <h2 class="text-3xl font-black text-slate-800 uppercase italic tracking-tighter">
+        {lang === 'pt' ? 'Acervo Legislativo' : 'Legislative Collection'}
+      </h2>
       <div class="h-px flex-1 bg-slate-200 mx-8 hidden sm:block"></div>
-      <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-        {projects.length} {projects.length === 1 ? 'Lei Detectada' : 'Leis Detectadas'}
-      </span>
     </div>
 
-    {projects.length === 0 ? (
-      <div class="text-center py-24 bg-slate-100 rounded-[3rem] border-2 border-dashed border-slate-200 mx-4">
-        <p class="text-slate-400 font-medium italic">Nenhum projeto encontrado no caminho de diretórios.</p>
-        <p class="text-xs text-slate-300 mt-2 font-mono">{lawsDir}</p>
-      </div>
-    ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projects.map(p => (
-          <div class="bg-white border border-slate-200 p-10 rounded-[3.5rem] shadow-sm hover:shadow-2xl transition-all flex flex-col group border-b-[12px] border-b-blue-600 mx-4 md:mx-0">
-            <div class="flex-1">
-              <div class="mb-6">
-                <span class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest border border-blue-100">
-                  {p.status}
-                </span>
-              </div>
-              <h2 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight min-h-[4rem]">
-                {p.titulo}
-              </h2>
-              <p class="text-sm text-slate-400 mb-8 italic">Relatoria: <span class="text-slate-600 font-bold not-italic">{p.autor}</span></p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {projects.map(p => (
+        <div
+          class="project-card bg-white border border-slate-200 p-10 rounded-[3.5rem] shadow-sm hover:shadow-2xl transition-all flex flex-col group border-b-[12px] border-b-blue-600 mx-4 md:mx-0 h-full"
+          data-esfera={p.esfera}
+        >
+          <div class="flex-1">
+            <div class="mb-6 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-lg bg-blue-50 text-blue-600 text-[9px] font-black uppercase tracking-widest border border-blue-100">
+                {p.status}
+              </span>
 
-              <div class="flex flex-wrap gap-2">
-                {p.tags && p.tags.map((tag) => (
-                  <span class="text-[9px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100 uppercase tracking-tighter">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
+              {p.esfera && (
+                <span class="px-3 py-1 rounded-lg bg-slate-900 text-white text-[9px] font-black uppercase tracking-widest">
+                  {p.esfera}
+                </span>
+              )}
+
+              {p.localizacao && (
+                <span class="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[9px] font-bold uppercase border border-emerald-100">
+                  📍 {p.localizacao.pais}
+                  {p.localizacao.estado && p.localizacao.estado !== 'Todos' ? ` / ${p.localizacao.estado}` : ''}
+                  {p.localizacao.municipio && p.localizacao.municipio !== 'Todos' ? ` / ${p.localizacao.municipio}` : ''}
+                </span>
+              )}
             </div>
 
-            <a href={`/projeto/${p.id}`}
-               class="mt-10 block text-center py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-blue-600 shadow-lg active:scale-95">
-              Analisar Documentação
-            </a>
-          </div>
-        ))}
-      </div>
-    )}
-  </main>
+            <h2 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight min-h-[4rem]">
+              {p.titulo}
+            </h2>
 
+            <p class="text-sm text-slate-400 mb-8 italic">
+                {lang === 'pt' ? 'Relatoria' : 'Rapporteur'}: <span class="text-slate-600 font-bold not-italic">{p.autor}</span>
+            </p>
+          </div>
+
+          <a href={`/projeto/${p.id}?lang=${lang}`}
+             class="mt-10 block text-center py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-blue-600 shadow-lg active:scale-95">
+            {t('project.analyze')}
+          </a>
+        </div>
+      ))}
+    </div>
+  </main>
 </BaseLayout>

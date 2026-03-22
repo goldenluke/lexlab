@@ -1,0 +1,115 @@
+---
+// src/components/FilterBar.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Traduções locais específicas para o componente caso não queira poluir o ui.ts
+const labels = {
+    pt: { all: 'Todas as Esferas', fed: 'Federal', est: 'Estadual', mun: 'Municipal' },
+    en: { all: 'All Spheres', fed: 'Federal', est: 'State', mun: 'Municipal' },
+    es: { all: 'Todas las Esferas', fed: 'Federal', est: 'Estatal', mun: 'Municipal' },
+    fr: { all: 'Toutes les Sphères', fed: 'Fédéral', est: 'Étatique', mun: 'Municipal' },
+    de: { all: 'Alle Ebenen', fed: 'Bundesebene', est: 'Landesebene', mun: 'Kommunalebene' }
+}[lang] || labels.pt;
+---
+
+<section class="max-w-7xl mx-auto px-4 mb-12 no-print">
+  <div class="bg-white p-4 md:p-6 rounded-[2.5rem] border border-slate-200 shadow-sm flex flex-col md:flex-row gap-4 items-center">
+
+    <div class="relative flex-1 w-full group">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <svg class="w-4 h-4 text-slate-400 group-focus-within:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <input
+        type="text"
+        id="filter-search"
+        placeholder={t('filter.placeholder')}
+        class="w-full bg-slate-50 border-none rounded-2xl py-3.5 pl-11 pr-6 text-sm focus:ring-2 focus:ring-blue-600 transition-all placeholder:text-slate-400 font-serif italic"
+      />
+    </div>
+
+    <div class="w-full md:w-auto">
+      <select
+        id="filter-esfera"
+        class="w-full md:w-48 bg-slate-50 border-none rounded-2xl py-3.5 px-6 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-blue-600 outline-none appearance-none cursor-pointer"
+        style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;"
+      >
+        <option value="todos">{labels.all}</option>
+        <option value="Federal">{labels.fed}</option>
+        <option value="Estadual">{labels.est}</option>
+        <option value="Municipal">{labels.mun}</option>
+      </select>
+    </div>
+
+    <div class="hidden md:block px-4 border-l border-slate-100">
+        <span id="results-count" class="text-[10px] font-black text-blue-600 uppercase tracking-widest whitespace-nowrap">
+            --
+        </span>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function initFilters() {
+    const searchInput = document.getElementById('filter-search') as HTMLInputElement;
+    const esferaSelect = document.getElementById('filter-esfera') as HTMLSelectElement;
+    const countDisplay = document.getElementById('results-count');
+    const projectCards = document.querySelectorAll('.project-card') as NodeListOf<HTMLElement>;
+
+    function performFilter() {
+      if (!searchInput || !esferaSelect) return;
+
+      const searchTerm = searchInput.value.toLowerCase();
+      const esferaValue = esferaSelect.value;
+      let visibleCount = 0;
+
+      projectCards.forEach(card => {
+        // Buscamos o texto dentro do card para busca simples
+        const text = card.innerText.toLowerCase();
+        const cardEsfera = card.getAttribute('data-esfera');
+
+        const matchesSearch = text.includes(searchTerm);
+        const matchesEsfera = esferaValue === 'todos' || cardEsfera === esferaValue;
+
+        if (matchesSearch && matchesEsfera) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (countDisplay) {
+        countDisplay.innerText = visibleCount + (visibleCount === 1 ? ' Result' : ' Results');
+        // Ajuste manual rápido de pluralização para PT se necessário:
+        if (document.documentElement.lang === 'pt') {
+            countDisplay.innerText = visibleCount + (visibleCount === 1 ? ' Resultado' : ' Resultados');
+        }
+      }
+    }
+
+    if (searchInput && esferaSelect) {
+      searchInput.addEventListener('input', performFilter);
+      esferaSelect.addEventListener('change', performFilter);
+      // Executa uma vez no início para atualizar o contador baseado no estado inicial
+      performFilter();
+    }
+  }
+
+  // Inicializa na carga da página
+  initFilters();
+
+  // Reinicializa se houver navegação via View Transitions do Astro (astro:page-load)
+  document.addEventListener('astro:page-load', initFilters);
+</script>
+
+<style>
+  .project-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

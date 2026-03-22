@@ -1,0 +1,109 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Sincronização de dados
+const lawsDir = path.resolve('./src/leis/src/projetos-leis');
+let stats = {
+  totalLeis: 0,
+  porEsfera: { Federal: 0, Estadual: 0, Municipal: 0 },
+  estadosMaisAtivos: {} as Record<string, number>,
+  tagsPopulares: {} as Record<string, number>
+};
+
+if (fs.existsSync(lawsDir)) {
+  const folders = fs.readdirSync(lawsDir).filter(f => fs.lstatSync(path.join(lawsDir, f)).isDirectory());
+  stats.totalLeis = folders.length;
+
+  folders.forEach(folder => {
+    const configPath = path.join(lawsDir, folder, 'config.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+      // Contagem por Esfera
+      if (config.esfera) stats.porEsfera[config.esfera]++;
+
+      // Contagem por Estado
+      const estado = config.localizacao?.estado;
+      if (estado && estado !== 'Todos') {
+        stats.estadosMaisAtivos[estado] = (stats.estadosMaisAtivos[estado] || 0) + 1;
+      }
+
+      // Tags mais usadas
+      config.tags?.forEach(tag => {
+        stats.tagsPopulares[tag] = (stats.tagsPopulares[tag] || 0) + 1;
+      });
+    }
+  });
+}
+
+// Ordenar estados por atividade
+const topEstados = Object.entries(stats.estadosMaisAtivos).sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="Painel de Transparência">
+  <main class="max-w-7xl mx-auto px-6 py-20">
+
+    <header class="mb-20 text-center">
+      <h1 class="text-5xl font-black tracking-tighter uppercase italic mb-4">
+        Métricas de <span class="text-blue-600">Soberania</span>
+      </h1>
+      <p class="text-slate-500 font-serif italic text-lg max-w-2xl mx-auto">
+        Dados em tempo real sobre a produção legislativa da comunidade LexLab em todo o território.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
+      <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm text-center">
+        <span class="block text-4xl font-black text-blue-600 mb-2">{stats.totalLeis}</span>
+        <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Minutas Ativas</span>
+      </div>
+      {Object.entries(stats.porEsfera).map(([esfera, count]) => (
+        <div class="bg-slate-900 p-8 rounded-[2.5rem] text-white text-center">
+          <span class="block text-4xl font-black mb-2">{count}</span>
+          <span class="text-[10px] font-black uppercase text-blue-400 tracking-widest">{esfera}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+      <section class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-xl">
+        <h3 class="text-xl font-black uppercase italic mb-8 border-b pb-4">Atividade por Estado</h3>
+        <div class="space-y-6">
+          {topEstados.map(([estado, count]) => (
+            <div class="flex items-center gap-4">
+              <span class="w-32 text-sm font-bold text-slate-600">{estado}</span>
+              <div class="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600" style={`width: ${(count / stats.totalLeis) * 100}%`}></div>
+              </div>
+              <span class="text-sm font-black text-slate-900">{count}</span>
+            </div>
+          ))}
+          {topEstados.length === 0 && <p class="text-sm text-slate-400 italic">Aguardando dados regionais...</p>}
+        </div>
+      </section>
+
+      <section class="bg-slate-50 p-10 rounded-[3rem] border border-slate-200">
+        <h3 class="text-xl font-black uppercase italic mb-8 border-b border-slate-200 pb-4">Temas em Pauta</h3>
+        <div class="flex flex-wrap gap-3">
+          {Object.entries(stats.tagsPopulares).map(([tag, count]) => (
+            <div class="bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+              <span class="text-sm font-bold text-slate-700">#{tag}</span>
+              <span class="bg-blue-50 text-blue-600 text-[10px] font-black px-2 py-0.5 rounded-full">{count}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="mt-20 p-10 bg-blue-50 rounded-[3rem] border border-blue-100 text-center">
+      <p class="text-blue-800 font-serif italic">
+        "O Direito não é apenas o que está nos códigos, mas o que a sociedade codifica no dia a dia."
+      </p>
+    </footer>
+
+  </main>
+</BaseLayout>
