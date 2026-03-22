@@ -1,0 +1,14 @@
+# Dependências
+node_modules/
+
+# Cache e builds
+.astro/
+dist/
+npm-debug.log*
+
+# Variáveis de ambiente (Segurança)
+.env
+.env.production
+
+# Arquivos do Sistema
+.DS_Store

@@ -1,0 +1,51 @@
+---
+// O link do Webhook será pego de uma variável de ambiente por segurança
+const DEPLOY_HOOK_URL = import.meta.env.PUBLIC_DEPLOY_HOOK;
+---
+
+{DEPLOY_HOOK_URL && (
+  <div class="no-print fixed bottom-6 right-6 z-[100]">
+    <button
+      id="update-trigger"
+      class="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-slate-900 rounded-full shadow-2xl hover:bg-green-600 hover:text-white hover:border-green-500 transition-all font-bold text-xs uppercase tracking-widest active:scale-95 group"
+    >
+      <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+      Sincronizar Atualizações
+    </button>
+
+    <!-- Feedback de Status -->
+    <div id="status-msg" class="hidden absolute bottom-16 right-0 w-64 p-4 bg-slate-900 text-white rounded-2xl text-[10px] shadow-xl animate-bounce">
+       🚀 Solicitação enviada! O sistema está validando os arquivos e reconstruindo o portal. Em 1 minuto o site estará atualizado.
+    </div>
+  </div>
+)}
+
+<script define:vars={{ DEPLOY_HOOK_URL }}>
+  const btn = document.getElementById('update-trigger');
+  const msg = document.getElementById('status-msg');
+
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.innerText = "Processando...";
+
+      try {
+        // Dispara o Webhook via POST
+        await fetch(DEPLOY_HOOK_URL, { method: 'POST' });
+
+        msg.classList.remove('hidden');
+        setTimeout(() => {
+           msg.classList.add('hidden');
+           btn.disabled = false;
+           btn.innerHTML = `Sincronizar Atualizações`;
+        }, 10000);
+
+      } catch (e) {
+        alert("Erro ao conectar com o servidor de deploy.");
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

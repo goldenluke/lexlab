@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-slate-50 text-slate-900 antialiased;
+    }
+}
+
+.markdown-content {
+    @apply font-serif leading-relaxed text-slate-800 text-justify;
+}
+
+.markdown-content h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
+.markdown-content h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
+.markdown-content p { @apply mb-6 text-lg; }

@@ -1,0 +1,61 @@
+---
+const { repo } = Astro.props;
+
+// Extraímos o owner/repo de forma segura
+const repoPath = repo.replace("https://github.com/", "");
+const apiUrl = `https://api.github.com/repos/${repoPath}/contributors`;
+
+let contributors = [];
+
+try {
+  // Adicionamos um User-Agent (exigência do GitHub para certas requisições)
+  const response = await fetch(apiUrl, {
+    headers: {
+      'User-Agent': 'LexLab-Astro-Platform'
+    }
+  });
+
+  // Só tentamos converter para JSON se a resposta for 200 OK
+  if (response.status === 200) {
+    contributors = await response.json();
+  } else {
+    console.warn(`GitHub API retornou status ${response.status} para ${apiUrl}`);
+  }
+} catch (error) {
+  // Se a internet cair ou a API falhar, o site continua funcionando, apenas sem as fotos
+  console.error("Erro ao buscar contribuidores:", error);
+}
+---
+
+<div class="mt-12 p-8 bg-slate-900 rounded-[2rem] text-white">
+    <h3 class="text-sm font-black uppercase tracking-widest mb-6 text-blue-400">Coautoria e Contribuições</h3>
+
+    <div class="flex flex-wrap gap-4">
+        {contributors.length > 0 ? (
+            contributors.map((user: any) => (
+                <a href={user.html_url} target="_blank" title={`${user.login} contribuiu com ${user.contributions} alterações`} class="group relative">
+                    <img
+                        src={user.avatar_url}
+                        alt={user.login}
+                        class="w-12 h-12 rounded-full border-2 border-slate-700 group-hover:border-blue-500 transition-all shadow-lg"
+                    />
+                    <span class="absolute -bottom-2 -right-2 bg-blue-600 text-[8px] font-black px-1.5 py-0.5 rounded-full border border-slate-900">
+                        {user.contributions}
+                    </span>
+                </a>
+            ))
+        ) : (
+            <p class="text-xs text-slate-500 italic">Aguardando primeiras contribuições via GitHub.</p>
+        )}
+
+        <!-- Botão para novos voluntários sempre visível -->
+        <a href={repo} target="_blank" class="w-12 h-12 rounded-full border-2 border-dashed border-slate-600 flex items-center justify-center hover:border-blue-500 hover:text-blue-500 transition-all text-slate-500" title="Contribuir no GitHub">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
+            </svg>
+        </a>
+    </div>
+    <p class="mt-6 text-[10px] text-slate-500 uppercase font-bold tracking-wider">
+        Atualizado automaticamente via API do GitHub
+    </p>
+</div>

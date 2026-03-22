@@ -1,0 +1,33 @@
+name: CI/CD LexLab
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Legislative Linter # <--- O VALIDADOR AQUI
+        run: npm run lint:leis
+
+  deploy:
+    needs: validate # <--- SÓ RODA SE O LINTER PASSAR
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build
+      # Aqui entraria a sua lógica de deploy (GitHub Pages, Vercel, etc)

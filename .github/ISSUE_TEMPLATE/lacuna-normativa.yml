@@ -1,0 +1,37 @@
+name: "🔍 Relatar Lacuna ou Ajuste em Lei"
+description: Reportar falhas técnicos, jurídicas ou sugestões de emendas em projetos existentes.
+title: "[AJUSTE]: "
+labels: ["emenda", "debate-tecnico"]
+body:
+  - type: dropdown
+    id: projeto-afetado
+    attributes:
+      label: Qual projeto de lei deve ser ajustado?
+      options:
+        - "Avaliação Neuropsicológica no SUS (pl-neuro-sus)"
+        - "Outro (especifique abaixo)"
+    validations:
+      required: true
+  - type: input
+    id: artigo-afetado
+    attributes:
+      label: Artigo ou Seção
+      placeholder: "Ex: Artigo 3º, Parágrafo 2º"
+  - type: textarea
+    id: descricao-problema
+    attributes:
+      label: Descrição da Lacuna ou Erro
+      description: O que está faltando ou o que está juridicamente impreciso?
+    validations:
+      required: true
+  - type: textarea
+    id: sugestao-redacao
+    attributes:
+      label: Sugestão de Nova Redação
+      description: Como o texto deveria ficar?
+      placeholder: "Art. X - Fica estabelecido que..."
+  - type: textarea
+    id: evidencias
+    attributes:
+      label: Evidências ou Referências
+      description: Adicione links para estudos, decisões judiciais ou leis de outros países que suportem sua ideia.

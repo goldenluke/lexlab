@@ -1,0 +1,44 @@
+---
+// src/components/Comments.astro
+---
+<section class="mt-20 no-print border-t border-slate-200 pt-16">
+    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-10">
+        <div class="bg-blue-600 p-3 rounded-2xl text-white shadow-lg shadow-blue-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+            </svg>
+        </div>
+        <div>
+            <h3 class="text-2xl font-black text-slate-800 uppercase italic tracking-tighter leading-none">Audiência Pública Digital</h3>
+            <p class="text-sm text-slate-500 mt-1">Deixe suas sugestões técnicas ou relatos sobre este projeto abaixo.</p>
+        </div>
+        <div class="h-px flex-1 bg-slate-100 hidden md:block"></div>
+    </div>
+
+    <!-- Container onde o Giscus injetará o fórum -->
+    <div class="giscus-container bg-white p-4 md:p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+        <script src="https://giscus.app/client.js"
+                data-repo="goldenluke/lexlab"
+                data-repo-id="R_kgDORtteZA"
+                data-category="Ideas"
+                data-category-id="DIC_kwDORtteZM4C5BrF"
+                data-mapping="title"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="light"
+                data-lang="pt"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+</section>
+
+<style is:global>
+    /* Garante que o frame do Giscus ocupe toda a largura disponível */
+    .giscus, .giscus-frame {
+        width: 100% !important;
+        border: none !important;
+    }
+</style>

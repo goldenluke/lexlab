@@ -1,0 +1,82 @@
+---
+// src/components/AdminTrigger.astro
+// O Astro lê a variável de ambiente apenas durante o build ou no servidor
+const DEPLOY_HOOK_URL = import.meta.env.PUBLIC_DEPLOY_HOOK;
+---
+
+{DEPLOY_HOOK_URL ? (
+  <div class="no-print fixed bottom-6 right-6 z-[100]">
+    <button
+      id="update-trigger"
+      data-hook={DEPLOY_HOOK_URL}
+      class="flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-slate-900 rounded-full shadow-2xl hover:bg-green-600 hover:text-white hover:border-green-500 transition-all font-bold text-xs uppercase tracking-widest active:scale-95 group"
+    >
+      <svg class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+      Sincronizar Atualizações
+    </button>
+
+    <div id="status-msg" class="hidden absolute bottom-16 right-0 w-64 p-5 bg-slate-900 text-white rounded-[1.5rem] text-[10px] shadow-2xl animate-bounce border border-slate-700">
+       <span class="text-green-400 font-bold block mb-1 underline">SOLICITAÇÃO ENVIADA!</span>
+       O sistema está validando os arquivos no GitHub e reconstruindo o portal. Em instantes o site estará atualizado.
+    </div>
+  </div>
+) : null}
+
+<script>
+  // O script é isolado e compilado pelo Astro, garantindo que não vaze
+  function setupTrigger() {
+    const btn = document.getElementById('update-trigger') as HTMLButtonElement;
+    const msg = document.getElementById('status-msg');
+
+    if (!btn || !msg) return;
+
+    const hookUrl = btn.getAttribute('data-hook');
+
+    btn.addEventListener('click', async () => {
+      // Estado de Carregamento
+      btn.disabled = true;
+      const originalContent = btn.innerHTML;
+      btn.innerText = "Processando...";
+
+      try {
+        if (!hookUrl) throw new Error("Link de deploy não configurado.");
+
+        // Dispara o sinal para o servidor (Vercel/Cloudflare/Netlify)
+        const response = await fetch(hookUrl, { method: 'POST' });
+
+        if (response.ok) {
+          // Mostra feedback de sucesso
+          msg.classList.remove('hidden');
+
+          // Reseta o botão após 10 segundos
+          setTimeout(() => {
+             msg.classList.add('hidden');
+             btn.disabled = false;
+             btn.innerHTML = originalContent;
+          }, 10000);
+        } else {
+          throw new Error("Servidor recusou a chamada.");
+        }
+
+      } catch (e) {
+        console.error("Erro no deploy:", e);
+        btn.disabled = false;
+        btn.innerText = "Erro na Conexão";
+        btn.classList.add('bg-red-50', 'text-red-600', 'border-red-200');
+
+        setTimeout(() => {
+          btn.innerHTML = originalContent;
+          btn.classList.remove('bg-red-50', 'text-red-600', 'border-red-200');
+        }, 3000);
+      }
+    });
+  }
+
+  // Executa ao carregar a página
+  setupTrigger();
+
+  // Se você estiver usando navegação instantânea do Astro, reinicia o script
+  document.addEventListener('astro:page-load', setupTrigger);
+</script>

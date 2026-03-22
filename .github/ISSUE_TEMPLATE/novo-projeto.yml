@@ -1,0 +1,38 @@
+name: "📜 Propor Novo Projeto de Lei"
+description: Sugira um novo tema ou rascunho de legislação para a plataforma.
+title: "[PROPOSTA]: "
+labels: ["novo-projeto", "aguardando-analise"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por contribuir! Use este formulário para estruturar sua ideia legislativa.
+  - type: input
+    id: titulo-lei
+    attributes:
+      label: Título Sugerido
+      description: Como devemos chamar este projeto?
+      placeholder: "Ex: Lei de Incentivo à Tecnologia Assistiva"
+    validations:
+      required: true
+  - type: textarea
+    id: justificativa
+    attributes:
+      label: Justificativa (O Porquê)
+      description: Qual problema social ou jurídico essa lei resolve?
+      placeholder: "Descreva a lacuna normativa atual..."
+    validations:
+      required: true
+  - type: textarea
+    id: objetivos
+    attributes:
+      label: Principais Objetivos
+      description: Liste 3 a 5 pontos centrais da lei.
+      placeholder: "1. Garantir... 2. Reduzir... 3. Estabelecer..."
+  - type: checkboxes
+    id: termos
+    attributes:
+      label: Declaração de Intenção
+      options:
+        - label: Entendo que esta é uma proposta colaborativa e pode sofrer alterações pela comunidade.
+          required: true

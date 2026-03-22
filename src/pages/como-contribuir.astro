@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Como Contribuir">
+  
+  <!-- HERO: Título e Identidade -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto pt-24 pb-20 px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8 border border-blue-100 shadow-sm">
+        Manual de Redação Coletiva
+      </div>
+      <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter leading-none">
+        Legislar é <span class="text-blue-600 italic">Codificar</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-slate-500 font-serif italic leading-relaxed max-w-2xl mx-auto">
+        Entenda o fluxo transparente para sugerir emendas, correções e novos projetos de lei utilizando o motor do GitHub.
+      </p>
+    </div>
+  </section>
+
+  <!-- TIMELINE DE PASSOS -->
+  <main class="max-w-5xl mx-auto px-6 py-24">
+    <div class="relative">
+      
+      <!-- Linha Vertical Decorativa (Apenas Desktop) -->
+      <div class="absolute left-[31px] top-0 bottom-0 w-px bg-slate-200 hidden md:block"></div>
+
+      <div class="space-y-32">
+        
+        <!-- PASSO 1 -->
+        <div class="relative flex flex-col md:flex-row gap-12 group">
+          <div class="relative z-10 flex shrink-0 items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-2xl text-2xl font-black shadow-2xl group-hover:bg-blue-600 transition-colors duration-500">
+            1
+          </div>
+          <div class="flex-1">
+            <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tight uppercase italic">Assinatura Digital</h2>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500">
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed font-serif">
+                    Para garantir a fé pública e a autoria das sugestões, utilizamos o GitHub. Sua conta serve como sua assinatura oficial no histórico da lei.
+                </p>
+                <a href="https://github.com/signup" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-900 transition-all shadow-lg shadow-blue-200 active:scale-95">
+                    Criar Assinatura no GitHub
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSO 2 -->
+        <div class="relative flex flex-col md:flex-row gap-12 group">
+          <div class="relative z-10 flex shrink-0 items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-2xl text-2xl font-black shadow-2xl group-hover:bg-blue-600 transition-colors duration-500">
+            2
+          </div>
+          <div class="flex-1">
+            <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tight uppercase italic">Análise do Dispositivo</h2>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500">
+                <p class="text-lg text-slate-600 leading-relaxed font-serif">
+                    Navegue pelos projetos ativos. Ao encontrar um artigo ou parágrafo que necessite de ajuste, clique no botão <span class="bg-slate-100 text-slate-900 px-3 py-1 rounded-lg font-sans font-bold text-sm mx-1 border border-slate-200 shadow-sm whitespace-nowrap">Sugerir Edição nesta seção</span>.
+                </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSO 3 -->
+        <div class="relative flex flex-col md:flex-row gap-12 group">
+          <div class="relative z-10 flex shrink-0 items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-2xl text-2xl font-black shadow-2xl group-hover:bg-blue-600 transition-colors duration-500">
+            3
+          </div>
+          <div class="flex-1">
+            <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tight uppercase italic">O Rascunho (Fork)</h2>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500">
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed font-serif">
+                    O GitHub criará automaticamente um "Fork". Imagine isso como uma cópia de segurança para o seu gabinete digital. Você edita o texto livremente sem risco de danificar a versão oficial.
+                </p>
+                <div class="p-6 bg-amber-50 rounded-[2rem] border-l-8 border-amber-400 flex items-start gap-4">
+                    <svg class="w-6 h-6 text-amber-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <p class="text-sm text-amber-900 font-medium leading-relaxed italic">
+                        "Foque apenas no texto. A formatação utiliza símbolos simples chamados Markdown, que explicamos logo abaixo."
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSO 4 -->
+        <div class="relative flex flex-col md:flex-row gap-12 group">
+          <div class="relative z-10 flex shrink-0 items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-2xl text-2xl font-black shadow-2xl group-hover:bg-blue-600 transition-colors duration-500">
+            4
+          </div>
+          <div class="flex-1">
+            <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tight uppercase italic">Protocolo e Justificativa</h2>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500">
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed font-serif">
+                    Após alterar o texto, role a página até o fim para o Commit. Este é o momento de protocolar sua sugestão:
+                </p>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-blue-600 rounded-full mt-2.5 shrink-0 shadow-sm shadow-blue-400"></div>
+                        <div>
+                            <span class="font-bold text-slate-900 block text-lg">Título da Emenda</span>
+                            <span class="text-slate-500 text-sm">Um resumo curto da mudança (ex: "Ajuste no Art. 3º - Prazo de Exame").</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-blue-600 rounded-full mt-2.5 shrink-0 shadow-sm shadow-blue-400"></div>
+                        <div>
+                            <span class="font-bold text-slate-900 block text-lg">Justificativa Técnica</span>
+                            <span class="text-slate-500 text-sm">Por que essa mudança é necessária? Cite leis, estudos ou lacunas sociais.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSO 5 -->
+        <div class="relative flex flex-col md:flex-row gap-12 group">
+          <div class="relative z-10 flex shrink-0 items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-2xl text-2xl font-black shadow-2xl group-hover:bg-blue-600 transition-colors duration-500">
+            5
+          </div>
+          <div class="flex-1">
+            <h2 class="text-3xl font-black text-slate-900 mb-6 tracking-tight uppercase italic">Relatoria (Pull Request)</h2>
+            <div class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500">
+                <p class="text-lg text-slate-600 mb-10 leading-relaxed font-serif">
+                    Clique em "Create Pull Request". Sua proposta entra em audiência pública digital e na fila de análise da nossa relatoria técnica.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 flex flex-col justify-between">
+                        <span class="text-blue-600 font-black text-[10px] uppercase tracking-widest block mb-4 border-b border-blue-100 pb-2">Se Aprovada</span>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            O portal é atualizado automaticamente e seu nome entra para a lista eterna de coautores da proposição.
+                        </p>
+                    </div>
+                    <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 flex flex-col justify-between">
+                        <span class="text-slate-400 font-black text-[10px] uppercase tracking-widest block mb-4 border-b border-slate-200 pb-2">Se Negada</span>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Nossos relatores explicarão os motivos técnicos ou jurídicos na aba de discussões do projeto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- GUIA DE FORMATAÇÃO: O Toque Final Profissional -->
+  <section class="bg-slate-900 py-32 px-6 overflow-hidden relative">
+    <div class="max-w-5xl mx-auto relative z-10">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter uppercase">Gramática de Redação</h2>
+            <p class="text-slate-400 max-w-xl mx-auto text-lg italic">Markdown: a forma mais simples de escrever leis com tecnologia.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Col 1 -->
+            <div class="p-8 bg-white/5 border border-white/10 rounded-[3rem] backdrop-blur-md">
+                <div class="w-10 h-10 bg-blue-500 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </div>
+                <span class="text-blue-400 font-black text-[10px] uppercase tracking-widest block mb-4">Estrutura Hierárquica</span>
+                <div class="bg-black/40 p-5 rounded-2xl font-mono text-[13px] leading-loose text-slate-300">
+                    # Capítulo (H1)<br>
+                    ## Artigo (H2)<br>
+                    ### Seção (H3)
+                </div>
+            </div>
+            <!-- Col 2 -->
+            <div class="p-8 bg-white/5 border border-white/10 rounded-[3rem] backdrop-blur-md">
+                <div class="w-10 h-10 bg-blue-500 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5c2.778 7.078 8.088 14 14.249 14m-12.74-14L5 21"></path></svg>
+                </div>
+                <span class="text-blue-400 font-black text-[10px] uppercase tracking-widest block mb-4">Destaque de Conteúdo</span>
+                <div class="bg-black/40 p-5 rounded-2xl font-mono text-[13px] leading-loose text-slate-300">
+                    Texto em Negrito<br>
+                    *Texto em Itálico*<br>
+                    ~~Riscado (Vetado)~~
+                </div>
+            </div>
+            <!-- Col 3 -->
+            <div class="p-8 bg-white/5 border border-white/10 rounded-[3rem] backdrop-blur-md">
+                <div class="w-10 h-10 bg-blue-500 text-white rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                </div>
+                <span class="text-blue-400 font-black text-[10px] uppercase tracking-widest block mb-4">Incisos e Citações</span>
+                <div class="bg-black/40 p-5 rounded-2xl font-mono text-[13px] leading-loose text-slate-300">
+                    - Inciso ou Item<br>
+                    > Citação Jurídica<br>
+                    [Referência](URL)
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Decorações Gradient -->
+    <div class="absolute -left-20 bottom-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+    <div class="absolute -right-20 top-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-32 px-6 text-center bg-white border-t border-slate-100">
+    <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-10 tracking-tighter uppercase">Preparado para Codificar?</h2>
+    <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <a href="/" class="px-12 py-6 bg-slate-900 text-white rounded-3xl font-black uppercase text-xs tracking-[0.2em] hover:bg-blue-600 transition-all shadow-2xl shadow-slate-300 active:scale-95">
+            Explorar Projetos Ativos
+        </a>
+        <a href="https://github.com/goldenluke/lexlab" target="_blank" class="px-12 py-6 bg-white border border-slate-200 text-slate-900 rounded-3xl font-black uppercase text-xs tracking-[0.2em] hover:bg-slate-50 transition-all shadow-md active:scale-95">
+            Abrir Repositório
+        </a>
+    </div>
+    <p class="mt-12 text-[10px] text-slate-400 uppercase tracking-widest font-black">
+        A LexLab acredita na soberania digital do povo brasileiro.
+    </p>
+  </section>
+
+</BaseLayout>
