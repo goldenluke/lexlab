@@ -1,20 +1,18 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FilterBar from '../components/FilterBar.astro';
 
-// Importações de Tradução
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-
-// Lógica de i18n
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
-// Configuração do Repositório
+// =========================
+// CONFIG
+// =========================
 const REPO_URL = "https://github.com/goldenluke/lexlab";
 
-// Caminho das Leis
+// =========================
+// LOAD PROJECTS
+// =========================
 const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
 let projects = [];
@@ -23,127 +21,149 @@ if (fs.existsSync(lawsDir)) {
   projects = fs.readdirSync(lawsDir)
     .filter(folder => {
       const fullPath = path.join(lawsDir, folder);
-      try {
-        return fs.lstatSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'config.json'));
-      } catch (e) { return false; }
+      return fs.lstatSync(fullPath).isDirectory();
     })
     .map(folder => {
       try {
         const configPath = path.join(lawsDir, folder, 'config.json');
-        const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-        return { ...configData, id: folder };
-      } catch (e) {
-        console.error(`Erro ao carregar projeto ${folder}:`, e);
+        if (!fs.existsSync(configPath)) return null;
+
+        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+        return {
+          ...config,
+          id: folder
+        };
+      } catch {
         return null;
       }
     })
-    .filter(p => p !== null);
+    .filter(Boolean);
+}
+
+// =========================
+// HELPERS
+// =========================
+function getTitulo(titulo) {
+  if (typeof titulo === 'object') {
+    return titulo.pt || titulo.en;
+  }
+  return titulo;
 }
 ---
 
-<BaseLayout title={lang === 'pt' ? 'Início' : 'Home'}>
+<BaseLayout title="LexLab">
 
-  <header class="bg-white border-b border-slate-200 pt-24 pb-36 px-4 relative overflow-hidden">
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <div class="inline-block bg-blue-600 text-white p-3 rounded-2xl mb-8 shadow-xl shadow-blue-100">
-        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-        </svg>
-      </div>
-      <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 mb-6 leading-none uppercase italic">
+  <!-- HERO -->
+  <header class="bg-white border-b border-slate-200 pt-24 pb-36 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+
+      <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 mb-6 uppercase italic">
         LEX<span class="text-blue-600">LAB</span>
       </h1>
-      <p class="text-xl md:text-2xl text-slate-500 font-serif italic max-w-2xl mx-auto leading-relaxed">
-        {t('hero.subtitle')}
+
+      <p class="text-xl text-slate-500 font-serif italic max-w-2xl mx-auto">
+        A inteligência coletiva codificando o futuro legislativo.
       </p>
+
     </div>
   </header>
 
-  <section class="max-w-6xl mx-auto px-4 -mt-16 mb-24 relative z-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <!-- AÇÕES -->
+  <section class="max-w-6xl mx-auto px-4 -mt-16 mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
 
-      <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
-         target="_blank"
-         class="flex items-center gap-6 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl hover:bg-blue-700 transition-all group active:scale-95 border border-slate-800">
-        <div class="bg-white/10 p-5 rounded-2xl group-hover:scale-110 transition-transform">
-          <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold">{lang === 'pt' ? 'Protocolar Nova Lei' : 'Submit New Law'}</h3>
-          <p class="text-slate-400 text-sm">{lang === 'pt' ? 'Abra um rascunho via Git.' : 'Open a draft via Git.'}</p>
-        </div>
-      </a>
+    <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
+       target="_blank"
+       class="p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-xl hover:bg-blue-700 transition">
 
-      <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
-         target="_blank"
-         class="flex items-center gap-6 p-8 bg-white border border-slate-200 text-slate-900 rounded-[2.5rem] shadow-2xl hover:border-red-400 transition-all group active:scale-95">
-        <div class="bg-red-50 p-5 rounded-2xl group-hover:scale-110 transition-transform">
-          <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold">{lang === 'pt' ? 'Relatar Brecha' : 'Report Gap'}</h3>
-          <p class="text-sm text-slate-500">{lang === 'pt' ? 'Audite falhas ativas.' : 'Audit active flaws.'}</p>
-        </div>
-      </a>
-    </div>
+      <h3 class="text-xl font-bold">Protocolar Nova Lei</h3>
+      <p class="text-sm text-slate-400">Abra um rascunho via Git</p>
+
+    </a>
+
+    <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
+       target="_blank"
+       class="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-xl hover:border-red-400 transition">
+
+      <h3 class="text-xl font-bold">Relatar Brecha Jurídica</h3>
+      <p class="text-sm text-slate-500">Audite falhas ativas</p>
+
+    </a>
+
   </section>
 
+  <!-- FILTRO -->
   <FilterBar />
 
+  <!-- LISTAGEM -->
   <main class="max-w-7xl mx-auto px-4 py-12">
+
     <div class="flex items-center justify-between mb-16 px-4">
       <h2 class="text-3xl font-black text-slate-800 uppercase italic tracking-tighter">
-        {lang === 'pt' ? 'Acervo Legislativo' : 'Legislative Collection'}
+        Acervo Legislativo
       </h2>
       <div class="h-px flex-1 bg-slate-200 mx-8 hidden sm:block"></div>
     </div>
 
+    {projects.length === 0 && (
+      <p class="text-center text-slate-400">
+        Nenhum projeto encontrado.
+      </p>
+    )}
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
       {projects.map(p => (
         <div
-          class="project-card bg-white border border-slate-200 p-10 rounded-[3.5rem] shadow-sm hover:shadow-2xl transition-all flex flex-col group border-b-[12px] border-b-blue-600 mx-4 md:mx-0 h-full"
-          data-esfera={p.esfera}
+          class="bg-white border border-slate-200 p-10 rounded-[3.5rem] shadow-sm hover:shadow-xl transition flex flex-col h-full"
         >
-          <div class="flex-1">
-            <div class="mb-6 flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-lg bg-blue-50 text-blue-600 text-[9px] font-black uppercase tracking-widest border border-blue-100">
+
+          <!-- TAGS -->
+          <div class="mb-6 flex flex-wrap gap-2">
+
+            {p.status && (
+              <span class="px-3 py-1 rounded-lg bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest">
                 {p.status}
               </span>
+            )}
 
-              {p.esfera && (
-                <span class="px-3 py-1 rounded-lg bg-slate-900 text-white text-[9px] font-black uppercase tracking-widest">
-                  {p.esfera}
-                </span>
-              )}
+            {p.esfera && (
+              <span class="px-3 py-1 rounded-lg bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest">
+                {p.esfera}
+              </span>
+            )}
 
-              {p.localizacao && (
-                <span class="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[9px] font-bold uppercase border border-emerald-100">
-                  📍 {p.localizacao.pais}
-                  {p.localizacao.estado && p.localizacao.estado !== 'Todos' ? ` / ${p.localizacao.estado}` : ''}
-                  {p.localizacao.municipio && p.localizacao.municipio !== 'Todos' ? ` / ${p.localizacao.municipio}` : ''}
-                </span>
-              )}
-            </div>
+            {p.localizacao?.pais && (
+              <span class="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase">
+                📍 {p.localizacao.pais}
+              </span>
+            )}
 
-            <h2 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight min-h-[4rem]">
-              {p.titulo}
-            </h2>
-
-            <p class="text-sm text-slate-400 mb-8 italic">
-                {lang === 'pt' ? 'Relatoria' : 'Rapporteur'}: <span class="text-slate-600 font-bold not-italic">{p.autor}</span>
-            </p>
           </div>
 
-          <a href={`/projeto/${p.id}?lang=${lang}`}
-             class="mt-10 block text-center py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-blue-600 shadow-lg active:scale-95">
-            {t('project.analyze')}
+          <!-- TÍTULO -->
+          <h2 class="text-2xl font-bold text-slate-900 mb-4 leading-tight">
+            {getTitulo(p.titulo)}
+          </h2>
+
+          <!-- AUTOR -->
+          <p class="text-sm text-slate-400 mb-8 italic">
+            Relatoria: <span class="text-slate-600 font-bold">{p.autor}</span>
+          </p>
+
+          <!-- BOTÃO -->
+          <a
+            href={`/projeto/${p.id}`}
+            class="mt-auto block text-center py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition"
+          >
+            Analisar Minuta
           </a>
+
         </div>
       ))}
+
     </div>
+
   </main>
+
 </BaseLayout>
