@@ -5,14 +5,8 @@ import path from 'node:path';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FilterBar from '../components/FilterBar.astro';
 
-// =========================
-// CONFIG
-// =========================
 const REPO_URL = "https://github.com/goldenluke/lexlab";
 
-// =========================
-// LOAD PROJECTS
-// =========================
 const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
 let projects = [];
@@ -29,11 +23,7 @@ if (fs.existsSync(lawsDir)) {
         if (!fs.existsSync(configPath)) return null;
 
         const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-
-        return {
-          ...config,
-          id: folder
-        };
+        return { ...config, id: folder };
       } catch {
         return null;
       }
@@ -41,9 +31,6 @@ if (fs.existsSync(lawsDir)) {
     .filter(Boolean);
 }
 
-// =========================
-// HELPERS
-// =========================
 function getTitulo(titulo) {
   if (typeof titulo === 'object') {
     return titulo.pt || titulo.en;
@@ -55,54 +42,54 @@ function getTitulo(titulo) {
 <BaseLayout title="LexLab">
 
   <!-- HERO -->
-  <header class="bg-white border-b border-slate-200 pt-24 pb-36 px-4">
-    <div class="max-w-4xl mx-auto text-center">
+  <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white px-4 py-20 sm:py-28 md:py-32">
 
-      <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 mb-6 uppercase italic">
-        LEX<span class="text-blue-600">LAB</span>
-      </h1>
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white,transparent)]"></div>
 
-      <p class="text-xl text-slate-500 font-serif italic max-w-2xl mx-auto">
+    <div class="relative max-w-4xl mx-auto text-center">
+
+<h1 class="lexlab-hero">
+  <span class="lexlab-main">LEX</span>
+  <span class="lexlab-accent">LAB</span>
+</h1>
+
+      <p class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300 font-serif italic max-w-2xl mx-auto">
         A inteligência coletiva codificando o futuro legislativo.
       </p>
+
+      <!-- BOTÕES -->
+      <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
+
+        <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
+           target="_blank"
+           class="w-full sm:w-auto text-center px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-bold shadow-lg transition">
+          Protocolar Nova Lei
+        </a>
+
+        <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
+           target="_blank"
+           class="w-full sm:w-auto text-center px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur rounded-xl font-bold border border-white/20 transition">
+          Relatar Falha Jurídica
+        </a>
+
+      </div>
 
     </div>
   </header>
 
-  <!-- AÇÕES -->
-  <section class="max-w-6xl mx-auto px-4 -mt-16 mb-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-
-    <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
-       target="_blank"
-       class="p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-xl hover:bg-blue-700 transition">
-
-      <h3 class="text-xl font-bold">Protocolar Nova Lei</h3>
-      <p class="text-sm text-slate-400">Abra um rascunho via Git</p>
-
-    </a>
-
-    <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
-       target="_blank"
-       class="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-xl hover:border-red-400 transition">
-
-      <h3 class="text-xl font-bold">Relatar Brecha Jurídica</h3>
-      <p class="text-sm text-slate-500">Audite falhas ativas</p>
-
-    </a>
-
+  <!-- FILTRO -->
+  <section class="max-w-6xl mx-auto px-4 mt-8 sm:mt-12">
+    <FilterBar />
   </section>
 
-  <!-- FILTRO -->
-  <FilterBar />
-
   <!-- LISTAGEM -->
-  <main class="max-w-7xl mx-auto px-4 py-12">
+  <main class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
 
-    <div class="flex items-center justify-between mb-16 px-4">
-      <h2 class="text-3xl font-black text-slate-800 uppercase italic tracking-tighter">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-10 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 uppercase italic">
         Acervo Legislativo
       </h2>
-      <div class="h-px flex-1 bg-slate-200 mx-8 hidden sm:block"></div>
+      <div class="hidden sm:block flex-1 h-px bg-slate-200"></div>
     </div>
 
     {projects.length === 0 && (
@@ -111,50 +98,50 @@ function getTitulo(titulo) {
       </p>
     )}
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <!-- GRID RESPONSIVO REAL -->
+    <div class="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
 
       {projects.map(p => (
-        <div
-          class="bg-white border border-slate-200 p-10 rounded-[3.5rem] shadow-sm hover:shadow-xl transition flex flex-col h-full"
-        >
+        <div class="group bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-2xl transition-all flex flex-col h-full">
 
           <!-- TAGS -->
-          <div class="mb-6 flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 mb-4 sm:mb-5">
 
             {p.status && (
-              <span class="px-3 py-1 rounded-lg bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest">
+              <span class="px-2.5 py-1 text-[9px] sm:text-[10px] font-black uppercase bg-blue-50 text-blue-600 rounded-lg">
                 {p.status}
               </span>
             )}
 
             {p.esfera && (
-              <span class="px-3 py-1 rounded-lg bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest">
+              <span class="px-2.5 py-1 text-[9px] sm:text-[10px] font-black uppercase bg-slate-900 text-white rounded-lg">
                 {p.esfera}
-              </span>
-            )}
-
-            {p.localizacao?.pais && (
-              <span class="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase">
-                📍 {p.localizacao.pais}
               </span>
             )}
 
           </div>
 
           <!-- TÍTULO -->
-          <h2 class="text-2xl font-bold text-slate-900 mb-4 leading-tight">
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 leading-snug group-hover:text-blue-600 transition">
             {getTitulo(p.titulo)}
           </h2>
 
           <!-- AUTOR -->
-          <p class="text-sm text-slate-400 mb-8 italic">
-            Relatoria: <span class="text-slate-600 font-bold">{p.autor}</span>
+          <p class="text-xs sm:text-sm text-slate-400 mb-4 sm:mb-6 italic">
+            Relatoria: <span class="text-slate-700 font-semibold">{p.autor}</span>
           </p>
+
+          <!-- LOCAL -->
+          {p.localizacao?.pais && (
+            <div class="mb-4 sm:mb-6 text-[10px] sm:text-xs text-emerald-700 font-bold uppercase">
+              📍 {p.localizacao.pais}
+            </div>
+          )}
 
           <!-- BOTÃO -->
           <a
             href={`/projeto/${p.id}`}
-            class="mt-auto block text-center py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition"
+            class="mt-auto text-center py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition text-sm sm:text-base"
           >
             Analisar Minuta
           </a>

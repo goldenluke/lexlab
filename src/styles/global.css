@@ -15,3 +15,93 @@
 .markdown-content h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
 .markdown-content h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
 .markdown-content p { @apply mb-6 text-lg; }
+
+.lexlab-title {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* LEX (base institucional) */
+.lexlab-main {
+    color: white;
+    position: relative;
+}
+
+/* LAB (assinatura tecnológica) */
+.lexlab-accent {
+    color: #60a5fa; /* blue-400 */
+    margin-left: 0.25em;
+
+    position: relative;
+    transform: skewX(-8deg);
+
+    text-shadow:
+    0 2px 0 rgba(0,0,0,0.2),
+    0 10px 30px rgba(59,130,246,0.3);
+}
+
+/* efeito sutil de stroke */
+.lexlab-main::after {
+    content: "LEX";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    z-index: -1;
+}
+
+/* HERO VERSION (mais impactante) */
+.lexlab-hero {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    line-height: 0.9;
+}
+
+/* LEX */
+.lexlab-hero .lexlab-main {
+    color: white;
+}
+
+/* LAB */
+.lexlab-hero .lexlab-accent {
+    color: #60a5fa; /* blue-400 */
+    margin-left: 0.25em;
+
+    position: relative;
+}
+
+/* linha dinâmica (detalhe premium) */
+.lexlab-hero .lexlab-accent::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 4px;
+    background: #60a5fa;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+/* hover sutil */
+.lexlab-hero:hover .lexlab-accent {
+    transform: translateY(-2px);
+}

@@ -5,7 +5,7 @@ import Search from '../components/Search.astro';
 import AdminTrigger from '../components/AdminTrigger.astro';
 import GithubAuth from '../components/GithubAuth.astro';
 
-// Importações de Tradução
+// i18n
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { languages } from '../i18n/ui';
 
@@ -21,7 +21,6 @@ const {
     image = "/web-app-manifest-512x512.png"
 } = Astro.props;
 
-// Lógica de i18n no servidor
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -30,127 +29,190 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
 
 <!DOCTYPE html>
 <html lang={lang} class="h-full scroll-smooth">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
 
-		<title>{title} | LEXLAB</title>
-		<meta name="description" content={description} />
-		<link rel="canonical" href={canonicalURL} />
+	<title>{title} | LEXLAB</title>
+	<meta name="description" content={description} />
+	<link rel="canonical" href={canonicalURL} />
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-	</head>
+	<!-- 🔥 Tipografia avançada -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-	<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-full flex flex-col">
+<link href="https://fonts.googleapis.com/css2?
+family=Inter:wght@400;600;700;900&
+family=Space+Grotesk:wght@500;700&
+display=swap" rel="stylesheet">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-full flex flex-col">
 
-		<header class="no-print sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-			<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4 md:gap-8">
+	<!-- HEADER -->
+	<header class="no-print sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+		<div class="max-w-7xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between gap-4">
 
-				<div class="flex items-center gap-3 shrink-0">
-					<a href={`/?lang=${lang}`} class="flex items-center gap-3 group">
-						<div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex items-center justify-center">
-							<img src="/favicon.svg" alt="LexLab" class="w-full h-full p-1.5" />
-						</div>
-						<span class="font-black tracking-tighter text-2xl hidden sm:block uppercase italic">
-							LEX<span class="text-blue-600">LAB</span>
-						</span>
-					</a>
+			<!-- LOGO -->
+			<a href={`/?lang=${lang}`} class="flex items-center gap-3 group">
+
+				<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow border bg-white flex items-center justify-center">
+					<img src="/favicon.svg" alt="LexLab" class="w-full h-full p-1.5" />
 				</div>
 
-				<div class="flex-1 max-w-xl hidden md:block">
-					<Search />
-				</div>
+				<!-- 🔥 TIPOGRAFIA NOVA -->
+				<h1 class="lexlab-title hidden sm:flex">
+					<span class="lexlab-main">LEX</span>
+					<span class="lexlab-accent">LAB</span>
+				</h1>
 
-				<nav class="flex items-center gap-3 md:gap-6 shrink-0">
-					<a href={`/transparencia?lang=${lang}`} class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors">
-						{t('nav.transparency')}
-					</a>
-					<a href={`/como-contribuir?lang=${lang}`} class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors hidden lg:block">
-						{t('nav.manual')}
-					</a>
+			</a>
 
-					<div class="relative group inline-block">
-						<button class="flex items-center gap-2 px-3 py-2 bg-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-600 hover:bg-blue-600 hover:text-white transition-all">
-							<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5c2.778 7.078 8.088 14 14.249 14m-12.74-14L5 21" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-							</svg>
-							{lang.toUpperCase()}
-						</button>
+			<!-- SEARCH -->
+			<div class="flex-1 max-w-xl hidden md:block">
+				<Search />
+			</div>
 
-						<div class="absolute right-0 mt-2 w-40 bg-white border border-slate-200 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100] p-2">
-							{Object.entries(languages).map(([code, label]) => {
-                                // Criação dinâmica da URL mantendo o caminho mas mudando o lang
-                                const currentUrl = new URL(Astro.url.href);
-                                currentUrl.searchParams.set('lang', code);
-                                return (
-                                    <a
-                                        href={currentUrl.search}
-                                        class={`block px-4 py-2 text-[10px] font-bold rounded-lg transition-colors ${lang === code ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                                    >
-                                        {label}
-                                    </a>
-                                );
-                            })}
-						</div>
+			<!-- NAV -->
+			<nav class="flex items-center gap-2 sm:gap-4 md:gap-6">
+
+				<a href={`/transparencia?lang=${lang}`}
+				   class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition">
+					{t('nav.transparency')}
+				</a>
+
+				<a href={`/como-contribuir?lang=${lang}`}
+				   class="hidden lg:block text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition">
+					{t('nav.manual')}
+				</a>
+
+				<!-- LANGUAGE -->
+				<div class="relative group">
+					<button class="px-3 py-2 bg-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition">
+						{lang.toUpperCase()}
+					</button>
+
+					<div class="absolute right-0 mt-2 w-40 bg-white border border-slate-200 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition p-2">
+						{Object.entries(languages).map(([code, label]) => {
+							const currentUrl = new URL(Astro.url.href);
+							currentUrl.searchParams.set('lang', code);
+							return (
+								<a
+									href={currentUrl.search}
+									class={`block px-4 py-2 text-[10px] font-bold rounded-lg ${lang === code ? 'bg-blue-50 text-blue-600' : 'hover:bg-slate-50'}`}
+								>
+									{label}
+								</a>
+							);
+						})}
 					</div>
-
-					<GithubAuth />
-				</nav>
-			</div>
-		</header>
-
-		<main class="flex-grow w-full">
-			<slot />
-		</main>
-
-		<AdminTrigger />
-
-		<footer class="bg-white border-t border-slate-200 py-20 px-6 no-print mt-auto">
-			<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-				<p class="font-black tracking-tighter text-2xl mb-4 uppercase italic">Lex<span class="text-blue-600">Lab</span></p>
-				<p class="text-slate-500 text-sm max-w-md leading-relaxed mb-10 font-serif italic">
-					{t('hero.subtitle')}
-				</p>
-
-				<div class="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-					<a href={`/?lang=${lang}`} class="hover:text-blue-600 transition-colors">{t('nav.home')}</a>
-					<a href={`/transparencia?lang=${lang}`} class="hover:text-blue-600 transition-colors">{t('nav.transparency')}</a>
-					<a href="https://github.com/goldenluke/lexlab" target="_blank" class="hover:text-blue-600 transition-colors">GitHub</a>
 				</div>
 
-				<div class="w-full pt-8 border-t border-slate-100 flex flex-col items-center">
-					<p class="text-[9px] text-slate-400 uppercase tracking-widest leading-loose">
-						Licença MIT © 2026 — LexLab & Comunidade <br/>
-						{t('footer.rights')}
-					</p>
-				</div>
+				<GithubAuth />
+			</nav>
+
+		</div>
+	</header>
+
+	<main class="flex-grow w-full">
+		<slot />
+	</main>
+
+	<AdminTrigger />
+
+	<!-- FOOTER -->
+	<footer class="bg-white border-t border-slate-200 py-16 px-6 mt-auto">
+		<div class="max-w-7xl mx-auto text-center">
+
+			<h2 class="lexlab-title justify-center mb-4">
+				<span class="lexlab-main">LEX</span>
+				<span class="lexlab-accent">LAB</span>
+			</h2>
+
+			<p class="text-slate-500 text-sm max-w-md mx-auto italic font-serif mb-10">
+				{t('hero.subtitle')}
+			</p>
+
+			<div class="flex flex-wrap justify-center gap-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-10">
+				<a href={`/?lang=${lang}`} class="hover:text-blue-600">{t('nav.home')}</a>
+				<a href={`/transparencia?lang=${lang}`} class="hover:text-blue-600">{t('nav.transparency')}</a>
+				<a href="https://github.com/goldenluke/lexlab" target="_blank" class="hover:text-blue-600">GitHub</a>
 			</div>
-		</footer>
 
-		<style is:global>
-			.markdown-content, .prose-legal { @apply font-serif leading-relaxed text-slate-800 text-justify; }
-			.markdown-content h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
-			.markdown-content h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
-			.markdown-content p { @apply mb-6 text-lg; }
+			<p class="text-[9px] text-slate-400 uppercase tracking-widest">
+				Licença MIT © 2026 — LexLab & Comunidade <br/>
+				{t('footer.rights')}
+			</p>
+		</div>
+	</footer>
 
-			@media print {
-				.no-print { display: none !important; }
-				body { background: white !important; }
-				.markdown-content { font-size: 12pt; line-height: 1.5; color: black; }
-			}
-		</style>
+	<!-- 🎨 ESTILO GLOBAL -->
+	<style is:global>
 
-        <script is:inline>
-            // Salva no localStorage quando o parâmetro lang muda
-            const urlParams = new URLSearchParams(window.location.search);
-            const langParam = urlParams.get('lang');
-            if (langParam) {
-                localStorage.setItem('lexlab_lang', langParam);
-            }
-        </script>
-	</body>
+		/* 🔥 LEXLAB BRANDING */
+		.lexlab-title {
+			font-family: 'Playfair Display', serif;
+			font-weight: 900;
+			text-transform: uppercase;
+			letter-spacing: -0.05em;
+			display: flex;
+			align-items: center;
+			font-size: clamp(1.5rem, 3vw, 2rem);
+		}
+
+		.lexlab-main {
+			color: #0f172a;
+			position: relative;
+		}
+
+		.lexlab-accent {
+			color: #3b82f6;
+			margin-left: 0.2em;
+			transform: skewX(-8deg);
+			text-shadow: 0 4px 20px rgba(59,130,246,0.3);
+			transition: all 0.3s ease;
+		}
+
+		.lexlab-title:hover .lexlab-accent {
+			transform: skewX(-8deg) translateY(-2px);
+		}
+
+		/* MARKDOWN */
+		.markdown-content, .prose-legal {
+			@apply font-serif leading-relaxed text-slate-800 text-justify;
+		}
+
+		.markdown-content h1 {
+			@apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase;
+		}
+
+		.markdown-content h2 {
+			@apply font-sans font-bold text-2xl mt-12 mb-4 border-l-4 border-blue-600 pl-4;
+		}
+
+		.markdown-content p {
+			@apply mb-6 text-lg;
+		}
+
+		@media print {
+			.no-print { display: none !important; }
+			body { background: white !important; }
+		}
+
+	</style>
+
+	<!-- persistência idioma -->
+	<script is:inline>
+		const urlParams = new URLSearchParams(window.location.search);
+		const langParam = urlParams.get('lang');
+		if (langParam) {
+			localStorage.setItem('lexlab_lang', langParam);
+		}
+	</script>
+
+</body>
 </html>
