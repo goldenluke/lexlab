@@ -50,8 +50,9 @@ function loadMarkdownSections(subfolder: string) {
       const rawContent = fs.readFileSync(path.join(dir, file), 'utf-8');
       return {
         html: marked.parse(rawContent),
-        // O CAMINHO DEVE COMEÇAR EM 'src/projetos-leis'
-        gitPath: `src/projetos-leis/${id}/${subfolder}/${file}`
+        // AJUSTE DO CAMINHO PARA O GITHUB:
+        // Concatenando o prefixo conforme sua solicitação
+        gitPath: `src/leis/src/projetos-leis/${id}/${subfolder}/${file}`
       };
     });
 }
