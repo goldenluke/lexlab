@@ -45,12 +45,12 @@ function loadMarkdownSections(subfolder: string) {
 
   return fs.readdirSync(dir)
     .filter(file => file.endsWith('.md'))
-    .sort() // Ordena por nome (ex: 01-..., 02-...)
+    .sort()
     .map(file => {
       const rawContent = fs.readFileSync(path.join(dir, file), 'utf-8');
       return {
         html: marked.parse(rawContent),
-        // Caminho relativo para o GitHub (usado no botão de edição)
+        // O CAMINHO DEVE COMEÇAR EM 'src/projetos-leis'
         gitPath: `src/projetos-leis/${id}/${subfolder}/${file}`
       };
     });
