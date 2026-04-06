@@ -1,92 +1,305 @@
 # === Início do arquivo: ./README.md ===
 
-# 📖 Guia de Governança e Colaboração: LexLab + GitHub
+# ⚖️ LexLab — Law as Code para o Processo Legislativo
 
-Este documento detalha a filosofia por trás da **LexLab** e fornece um roteiro técnico para cidadãos, juristas e especialistas que desejam atuar na redação de leis.
-
----
-
-## 🏛️ Parte 1: A Argumentação — Por que GitHub para Leis?
-
-O processo legislativo tradicional é frequentemente criticado por ser uma "caixa-preta": as discussões ocorrem em gabinetes fechados e a versão final de um texto pode surgir sem que se saiba exatamente quem alterou qual parágrafo e por qual motivo técnico.
-
-A LexLab inverte essa lógica ao aplicar os princípios do **Open Source (Código Aberto)** ao Direito:
-
-### 1. Rastreabilidade e Fé Pública Digital
-No GitHub, cada alteração é um `commit`. Isso significa que temos um registro imutável de:
-- **QUEM** sugeriu a mudança;
-- **QUANDO** ela foi feita;
-- **POR QUE** (a justificativa técnica anexada).
-Isso elimina o anonimato de interesses escusos e garante que a lei seja fundamentada em argumentos públicos.
-
-### 2. O Conceito de "Law as Code" (Lei como Código)
-Uma lei, assim como um software, é um sistema de regras que "roda" na sociedade. Se o código de um software tem bugs, o sistema trava. Se uma lei tem lacunas técnicas ou contradições jurídicas, ela gera insegurança e injustiça.
-- **Linter Legislativo:** Nossa plataforma roda scripts automáticos que verificam se o projeto está bem estruturado.
-- **Versionamento:** Podemos comparar a "Versão 1.0" da lei com a "Versão 2.0" instantaneamente, vendo o que foi vetado ou adicionado com destaque visual (diff).
-
-### 3. Democracia de Alta Intensidade
-A participação popular deixa de ser apenas um "voto" a cada quatro anos ou um "comentário em rede social" para se tornar **trabalho técnico**. O cidadão especialista (ex: um médico revisando uma lei de saúde) atua diretamente na construção do texto, oferecendo ao parlamentar uma base científica pronta para ser protocolada.
+> A versão digital do Direito Achado na Rua  
+> Infraestrutura aberta para construção, auditoria e evolução de normas jurídicas
 
 ---
 
-## 🛠️ Parte 2: Como Usar o GitHub (Para Não-Programadores)
+## 🌐 Plataforma
 
-O GitHub pode parecer intimidador, mas ele utiliza apenas três conceitos que todo cidadão interessado em política já conhece, apenas com nomes diferentes:
-
-### 1. O Fork (O Gabinete Virtual)
-Quando você clica em "Sugerir Edição", o GitHub pede para fazer um **Fork**.
-- **O que é:** É como se você tirasse uma xerox oficial do projeto para o seu "gabinete virtual". 
-- **Segurança:** Você pode apagar tudo, mudar palavras e testar ideias no seu Fork. Nada disso altera o site oficial até que sua ideia seja aprovada.
-
-### 2. O Commit (O Protocolo com Justificativa)
-Após editar o texto, você faz um **Commit**.
-- **O que é:** É o ato de salvar sua alteração com uma "nota de empenho". 
-- **Regra de Ouro:** Todo commit deve ter uma mensagem clara (ex: "Ajuste do prazo de 30 para 60 dias no Art. 5º") e uma justificativa (ex: "Conforme nota técnica da OMS, o diagnóstico demanda mais tempo").
-
-### 3. O Pull Request (O Protocolo na Mesa Diretora)
-O **Pull Request (PR)** é o momento mais importante.
-- **O que é:** É quando você envia um sinal para os administradores da LexLab dizendo: "Terminei minha sugestão no meu rascunho, peço que analisem para incluir no projeto oficial".
-- **Debate:** É no PR que ocorre a "Audiência Pública Digital". Outros usuários comentarão sua sugestão, pedindo melhorias ou apoiando o texto.
+🔗 https://lexlab.onrender.com/  
+📦 Código-fonte: https://github.com/goldenluke/lexlab
 
 ---
 
-## 🚀 Parte 3: Passo a Passo na Plataforma LexLab
+## 👤 Autor
 
-### Passo 1: Autenticação
-No topo da página, clique em **"Entrar com GitHub"**. Isso vincula sua identidade às suas futuras contribuições. Se não tiver conta, o site te guiará para criar uma em 1 minuto.
-
-### Passo 2: Audiência Pública (Giscus)
-Antes de editar o texto, role até o final de qualquer projeto de lei. 
-- Utilize a seção **Audiência Pública Digital** para ler o que outros estão falando.
-- Deixe um comentário ou uma "reação" (👍, 🎉, 🚀) nos pontos que você concorda.
-
-### Passo 3: Edição de Seção
-Ao ler os artigos, se perceber um erro ou oportunidade de melhora:
-1. Clique no botão **"Sugerir Edição nesta seção"** logo abaixo do texto.
-2. Você será levado ao editor do GitHub. Clique no ícone de **Lápis** (Edit).
-3. Faça as alterações no editor de texto.
-4. Clique em **"Commit changes"** (preencha o título e a justificativa).
-5. Clique em **"Create Pull Request"**.
+**Lucas Amaral Dourado**  
+Universidade Federal do Tocantins (UFT)
 
 ---
 
-## ✍️ Parte 4: Gramática de Redação (Markdown)
+## 🧠 Visão
 
-Para que o texto apareça formatado corretamente, usamos **Markdown**. É mais simples que o Word:
+A LexLab é uma plataforma de inteligência legislativa que propõe uma transformação estrutural no modo como normas jurídicas são concebidas, discutidas e refinadas.
 
-- **Artigos:** Use `## Artigo 1º` (isso cria um título médio).
-- **Incisos/Alíneas:** Use hífens `- item`.
-- **Termos Técnicos:** Use `**termo**` para **negrito**.
-- **Referências Jurídicas:** Use `> texto` para criar blocos de citação (recuados e em itálico).
-- **Links de Evidências:** Use `[título do estudo](link-da-internet)`.
+Parte-se da premissa de que o processo legislativo contemporâneo sofre com:
+- opacidade decisória  
+- baixa rastreabilidade de influências  
+- participação social limitada e pouco efetiva  
+
+A LexLab propõe uma alternativa:
+
+> tratar o Direito como um sistema versionado, auditável e colaborativo — tal como o software livre.
+
+Nesse modelo, leis deixam de ser textos estáticos e passam a ser organismos vivos, passíveis de evolução contínua, revisão técnica e validação coletiva.
 
 ---
 
-## ⚖️ Conclusão
+## ⚙️ Arquitetura Conceitual
 
-A LexLab não é apenas tecnologia; é um **método de resistência contra a inefetividade do Direito**. Ao unir a precisão do software com a legitimidade da participação popular, estamos codificando o futuro da democracia brasileira.
+A plataforma se estrutura sobre três fundamentos centrais:
 
-**Seja bem-vindo(a) à relatoria coletiva.**
+### 📜 Direito como Processo
+A norma não é um produto final, mas um fluxo contínuo de construção e revisão.
+
+### 🔍 Transparência Radical
+Toda modificação é:
+- registrada  
+- auditável  
+- atribuída  
+
+Eliminando a opacidade típica do processo legislativo tradicional.
+
+### 🧑‍⚖️ Soberania Técnica
+A participação popular deixa de ser meramente simbólica e passa a ser tecnicamente estruturada.
+
+O cidadão torna-se:
+> co-autor qualificado da norma
+
+---
+
+## 🚀 Funcionalidades
+
+### 🧾 Versionamento Legislativo
+- Histórico completo de alterações  
+- Registro de autoria, data e justificativa  
+- Linha do tempo normativa  
+
+---
+
+### 🔀 Diff Jurídico (estilo GitHub)
+- Comparação entre versões  
+- Destaque de alterações  
+- Análise palavra por palavra  
+
+---
+
+### 🔍 Comparação Lado a Lado
+- Versão anterior × versão atual  
+- Leitura crítica e contextualizada  
+
+---
+
+### 📊 Heatmap de Impacto Normativo
+
+Classificação automática com base em complexidade textual:
+
+- 🟢 Baixo → ajustes técnicos  
+- 🟡 Médio → modificações relevantes  
+- 🔴 Alto → alterações estruturais  
+
+---
+
+### ⚖️ Análise Semântica
+
+Classificação heurística das mudanças:
+
+- Expansão de direitos  
+- Restrição normativa  
+- Organização administrativa  
+- Ajuste técnico  
+
+---
+
+### ✍️ Edição Colaborativa
+- Botão “Sugerir edição”  
+- Integração com GitHub  
+- Uso de forks e pull requests  
+- Justificação técnica obrigatória  
+
+---
+
+### 👥 Governança Aberta
+- Processo distribuído  
+- Histórico público  
+- Responsabilização técnica  
+
+---
+
+### 📜 Fundamentação Estruturada
+- Separação entre exposição de motivos e dispositivos  
+- Markdown renderizado  
+- Versionamento integral da argumentação  
+
+---
+
+## 📦 Estrutura do Projeto
+
+src/  
+ ├── pages/  
+ │   ├── index.astro  
+ │   └── projeto/[id].astro  
+ │  
+ ├── leis/  
+ │   └── projetos-leis/  
+ │       └── <projeto>/  
+ │           ├── config.json  
+ │           ├── docs/  
+ │           └── artigos/  
+ │  
+ ├── components/  
+ ├── layouts/  
+ └── utils/  
+
+---
+
+## 🧾 Exemplo de Configuração
+
+{
+  "id": "pl-neuro-sus",
+  "titulo": {
+    "pt": "Garantia de Acesso à Avaliação Neuropsicológica no SUS",
+    "en": "Access to Neuropsychological Assessment in Public Health"
+  },
+  "autor": "Comunidade de Saúde e Direito",
+  "status": "Em Desenvolvimento",
+  "tags": ["Saúde", "SUS"],
+  "github_repo": "https://github.com/goldenluke/lexlab"
+}
+
+---
+
+## ⚖️ Caso de Uso
+
+Projeto de Lei: Garantia de Acesso à Avaliação Neuropsicológica no SUS
+
+- Enfrenta uma lacuna assistencial relevante na saúde mental brasileira  
+- Propõe institucionalização da avaliação neuropsicológica  
+- Estruturado como prova de conceito da plataforma  
+
+---
+
+## 📚 Fundamentação Jurídica
+
+A proposta dialoga diretamente com a Lei de Introdução às Normas do Direito Brasileiro (LINDB):
+
+- Art. 20 → decisões devem considerar consequências práticas  
+- Art. 21 → necessidade de motivação adequada  
+- Art. 22 → consideração das dificuldades reais da gestão pública  
+
+A LexLab operacionaliza esses princípios ao permitir:
+
+- revisão técnica antecipada  
+- validação empírica das propostas  
+- construção normativa baseada em evidências  
+
+---
+
+## 🧠 Filosofia
+
+### Direito Achado na Rua (versão digital)
+
+A LexLab expande a noção de que o Direito emerge da sociedade.
+
+A plataforma cria condições técnicas para que essa produção coletiva seja:
+
+- estruturada  
+- auditável  
+- juridicamente relevante  
+
+---
+
+### Law as Code
+
+O Direito passa a ser tratado como:
+
+- código versionado  
+- sistema auditável  
+- objeto de engenharia  
+
+---
+
+### Epistemologia Normativa
+
+Modelo tradicional:
+- texto fechado  
+- autoria difusa  
+- revisão opaca  
+
+Modelo LexLab:
+- sistema aberto  
+- autoria rastreável  
+- revisão auditável  
+
+---
+
+## 🔓 Licenciamento
+
+### 🖥️ Infraestrutura da Plataforma
+Licença **MIT**
+
+Permite:
+- uso irrestrito  
+- modificação  
+- redistribuição  
+- integração institucional  
+
+---
+
+### ⚖️ Conteúdo Jurídico (Projetos de Lei)
+
+Licença **Creative Commons CC BY-SA 4.0**
+
+Garante:
+- livre uso e adaptação  
+- obrigatoriedade de atribuição  
+- compartilhamento sob a mesma licença  
+
+Protege contra:
+- apropriação privada  
+- fechamento do conhecimento jurídico  
+
+---
+
+## 🧑‍💻 Como Contribuir
+
+1. Faça um fork do repositório  
+2. Edite uma minuta ou artigo  
+3. Submeta um Pull Request  
+4. Justifique tecnicamente a alteração  
+
+---
+
+## 🔮 Roadmap
+
+- Diff semântico avançado (NLP)  
+- Classificação jurídica automática  
+- Score de constitucionalidade  
+- Simulação de impacto normativo  
+- Interface de edição inline  
+- Integração com bases públicas (SUS, CNES, SIH)  
+
+---
+
+## 🚀 Propósito
+
+A LexLab não é apenas uma ferramenta tecnológica.
+
+É uma proposta institucional.
+
+Busca responder a uma questão central:
+
+> É possível democratizar o processo legislativo sem perder rigor técnico?
+
+A resposta proposta é:
+
+> Sim — desde que tratemos a lei como código  
+> e o povo como co-autor qualificado da norma  
+
+---
+
+## ⭐ Contribua
+
+Se você acredita em:
+
+- transparência institucional  
+- ciência aplicada ao direito  
+- soberania popular com rigor técnico  
+
+Você já faz parte deste projeto.
 
 
 # === Fim do arquivo: ./README.md ===
@@ -184,6 +397,7 @@ echo -e "${GREEN}===============================================${NC}"
       "dependencies": {
         "@astrojs/tailwind": "^5.1.5",
         "astro": "^4.16.19",
+        "diff": "^8.0.3",
         "fuse.js": "^7.1.0",
         "marked": "^12.0.2",
         "string-strip-html": "^13.5.3",
@@ -2176,6 +2390,15 @@ echo -e "${GREEN}===============================================${NC}"
         "node": ">=12"
       }
     },
+    "node_modules/astro/node_modules/diff": {
+      "version": "5.2.2",
+      "resolved": "https://registry.npmjs.org/diff/-/diff-5.2.2.tgz",
+      "integrity": "sha512-vtcDfH3TOjP8UekytvnHH1o1P4FcUdt4eQ1Y+Abap1tk/OB2MWQvcwS2ClCd1zuIhc3JKOx6p3kod8Vfys3E+A==",
+      "license": "BSD-3-Clause",
+      "engines": {
+        "node": ">=0.3.1"
+      }
+    },
     "node_modules/astro/node_modules/esbuild": {
       "version": "0.21.5",
       "resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.21.5.tgz",
@@ -2811,9 +3034,9 @@ echo -e "${GREEN}===============================================${NC}"
       "license": "Apache-2.0"
     },
     "node_modules/diff": {
-      "version": "5.2.2",
-      "resolved": "https://registry.npmjs.org/diff/-/diff-5.2.2.tgz",
-      "integrity": "sha512-vtcDfH3TOjP8UekytvnHH1o1P4FcUdt4eQ1Y+Abap1tk/OB2MWQvcwS2ClCd1zuIhc3JKOx6p3kod8Vfys3E+A==",
+      "version": "8.0.3",
+      "resolved": "https://registry.npmjs.org/diff/-/diff-8.0.3.tgz",
+      "integrity": "sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==",
       "license": "BSD-3-Clause",
       "engines": {
         "node": ">=0.3.1"
@@ -6506,6 +6729,7 @@ echo -e "${GREEN}===============================================${NC}"
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^4.16.19",
+    "diff": "^8.0.3",
     "fuse.js": "^7.1.0",
     "marked": "^12.0.2",
     "string-strip-html": "^13.5.3",
@@ -6845,6 +7069,72 @@ const editUrl = `${repo}/edit/main/${cleanPath}`;
 
 # === Fim do arquivo: ./components/EditButton.astro ===
 
+# === Início do arquivo: ./components/RevisionHistory.astro ===
+
+---
+// src/components/RevisionHistory.astro
+const { repo, projectId } = Astro.props;
+
+// Limpar a URL do repo para usar na API (ex: goldenluke/lexlab)
+const repoPath = repo.replace("https://github.com/", "");
+const apiUrl = `https://api.github.com/repos/${repoPath}/commits?path=src/leis/src/projetos-leis/${projectId}`;
+
+let commits = [];
+
+try {
+  const response = await fetch(apiUrl, {
+    headers: { 'User-Agent': 'LexLab-Platform' }
+  });
+  if (response.ok) {
+    commits = (await response.json()).slice(0, 5); // Pegamos as 5 últimas mudanças
+  }
+} catch (e) {
+  console.error("Erro ao buscar histórico:", e);
+}
+
+const formatDate = (dateStr) => {
+  return new Date(dateStr).toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+};
+---
+
+<div class="mt-8 p-6 bg-slate-50 rounded-[2rem] border border-slate-200">
+  <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 flex items-center gap-2">
+    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    Rastro de Auditoria (Git)
+  </h4>
+
+  <div class="space-y-6">
+    {commits.length > 0 ? commits.map((c) => (
+      <div class="flex gap-4 relative">
+        <img src={c.author?.avatar_url} class="w-8 h-8 rounded-full border border-white shadow-sm z-10" />
+        <div class="flex-1">
+          <p class="text-xs font-bold text-slate-800 leading-tight">
+            {c.commit.message.split('\n')[0]}
+          </p>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="text-[9px] text-blue-600 font-black uppercase">{c.author?.login || 'anonimo'}</span>
+            <span class="text-[9px] text-slate-400">•</span>
+            <span class="text-[9px] text-slate-400 uppercase font-medium">{formatDate(c.commit.author.date)}</span>
+          </div>
+        </div>
+      </div>
+    )) : (
+      <p class="text-[10px] text-slate-400 italic">Iniciando rastro digital...</p>
+    )}
+  </div>
+
+  <a href={`${repo}/commits/main/src/leis/src/projetos-leis/${projectId}`} target="_blank" class="block mt-6 pt-4 border-t border-slate-200 text-center text-[9px] font-black text-slate-400 hover:text-blue-600 transition-colors uppercase tracking-widest">
+    Ver histórico completo de fé pública
+  </a>
+</div>
+
+
+# === Fim do arquivo: ./components/RevisionHistory.astro ===
+
 # === Início do arquivo: ./components/Search.astro ===
 
 <div class="relative w-full max-w-md ml-8">
@@ -6925,8 +7215,29 @@ const editUrl = `${repo}/edit/main/${cleanPath}`;
 # === Início do arquivo: ./src/env.d.ts ===
 
 /// <reference path="../.astro/types.d.ts" />
+import type { tField } from './utils/tField';
+
+declare namespace App {
+    interface Locals {
+        tField: typeof tField;
+    }
+}
+
 
 # === Fim do arquivo: ./src/env.d.ts ===
+
+# === Início do arquivo: ./src/middleware.ts ===
+
+import type { MiddlewareHandler } from 'astro';
+import { tField } from './utils/tField';
+
+export const onRequest: MiddlewareHandler = async (context, next) => {
+    context.locals.tField = tField;
+    return next();
+};
+
+
+# === Fim do arquivo: ./src/middleware.ts ===
 
 # === Início do arquivo: ./src/styles/global.css ===
 
@@ -6947,6 +7258,105 @@ const editUrl = `${repo}/edit/main/${cleanPath}`;
 .markdown-content h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
 .markdown-content h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
 .markdown-content p { @apply mb-6 text-lg; }
+
+.lexlab-title {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* LEX (base institucional) */
+.lexlab-main {
+    color: white;
+    position: relative;
+}
+
+/* LAB (assinatura tecnológica) */
+.lexlab-accent {
+    color: #60a5fa; /* blue-400 */
+    margin-left: 0.25em;
+
+    position: relative;
+    transform: skewX(-8deg);
+
+    text-shadow:
+    0 2px 0 rgba(0,0,0,0.2),
+    0 10px 30px rgba(59,130,246,0.3);
+}
+
+/* efeito sutil de stroke */
+.lexlab-main::after {
+    content: "LEX";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    z-index: -1;
+}
+
+/* HERO VERSION (mais impactante) */
+.lexlab-hero {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    line-height: 0.9;
+}
+
+/* LEX */
+.lexlab-hero .lexlab-main {
+    color: white;
+}
+
+/* LAB */
+.lexlab-hero .lexlab-accent {
+    color: #60a5fa; /* blue-400 */
+    margin-left: 0.25em;
+
+    position: relative;
+}
+
+/* linha dinâmica (detalhe premium) */
+.lexlab-hero .lexlab-accent::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 4px;
+    background: #60a5fa;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+/* hover sutil */
+.lexlab-hero:hover .lexlab-accent {
+    transform: translateY(-2px);
+}
+
+.group:hover .edit-btn {
+    opacity: 1;
+}
+
+.edit-btn {
+    opacity: 0;
+    transition: 0.2s;
+}
 
 
 # === Fim do arquivo: ./src/styles/global.css ===
@@ -7177,6 +7587,127 @@ const editUrl = `${repo}/edit/main/${path}`;
 
 # === Fim do arquivo: ./src/components/EditButton.astro ===
 
+# === Início do arquivo: ./src/components/FilterBar.astro ===
+
+---
+// src/components/FilterBar.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Traduções locais específicas para o componente caso não queira poluir o ui.ts
+const labels = {
+    pt: { all: 'Todas as Esferas', fed: 'Federal', est: 'Estadual', mun: 'Municipal' },
+    en: { all: 'All Spheres', fed: 'Federal', est: 'State', mun: 'Municipal' },
+    es: { all: 'Todas las Esferas', fed: 'Federal', est: 'Estatal', mun: 'Municipal' },
+    fr: { all: 'Toutes les Sphères', fed: 'Fédéral', est: 'Étatique', mun: 'Municipal' },
+    de: { all: 'Alle Ebenen', fed: 'Bundesebene', est: 'Landesebene', mun: 'Kommunalebene' }
+}[lang] || labels.pt;
+---
+
+<section class="max-w-7xl mx-auto px-4 mb-12 no-print">
+  <div class="bg-white p-4 md:p-6 rounded-[2.5rem] border border-slate-200 shadow-sm flex flex-col md:flex-row gap-4 items-center">
+
+    <div class="relative flex-1 w-full group">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <svg class="w-4 h-4 text-slate-400 group-focus-within:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <input
+        type="text"
+        id="filter-search"
+        placeholder={t('filter.placeholder')}
+        class="w-full bg-slate-50 border-none rounded-2xl py-3.5 pl-11 pr-6 text-sm focus:ring-2 focus:ring-blue-600 transition-all placeholder:text-slate-400 font-serif italic"
+      />
+    </div>
+
+    <div class="w-full md:w-auto">
+      <select
+        id="filter-esfera"
+        class="w-full md:w-48 bg-slate-50 border-none rounded-2xl py-3.5 px-6 text-sm font-bold text-slate-700 focus:ring-2 focus:ring-blue-600 outline-none appearance-none cursor-pointer"
+        style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;"
+      >
+        <option value="todos">{labels.all}</option>
+        <option value="Federal">{labels.fed}</option>
+        <option value="Estadual">{labels.est}</option>
+        <option value="Municipal">{labels.mun}</option>
+      </select>
+    </div>
+
+    <div class="hidden md:block px-4 border-l border-slate-100">
+        <span id="results-count" class="text-[10px] font-black text-blue-600 uppercase tracking-widest whitespace-nowrap">
+            --
+        </span>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function initFilters() {
+    const searchInput = document.getElementById('filter-search') as HTMLInputElement;
+    const esferaSelect = document.getElementById('filter-esfera') as HTMLSelectElement;
+    const countDisplay = document.getElementById('results-count');
+    const projectCards = document.querySelectorAll('.project-card') as NodeListOf<HTMLElement>;
+
+    function performFilter() {
+      if (!searchInput || !esferaSelect) return;
+
+      const searchTerm = searchInput.value.toLowerCase();
+      const esferaValue = esferaSelect.value;
+      let visibleCount = 0;
+
+      projectCards.forEach(card => {
+        // Buscamos o texto dentro do card para busca simples
+        const text = card.innerText.toLowerCase();
+        const cardEsfera = card.getAttribute('data-esfera');
+
+        const matchesSearch = text.includes(searchTerm);
+        const matchesEsfera = esferaValue === 'todos' || cardEsfera === esferaValue;
+
+        if (matchesSearch && matchesEsfera) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (countDisplay) {
+        countDisplay.innerText = visibleCount + (visibleCount === 1 ? ' Result' : ' Results');
+        // Ajuste manual rápido de pluralização para PT se necessário:
+        if (document.documentElement.lang === 'pt') {
+            countDisplay.innerText = visibleCount + (visibleCount === 1 ? ' Resultado' : ' Resultados');
+        }
+      }
+    }
+
+    if (searchInput && esferaSelect) {
+      searchInput.addEventListener('input', performFilter);
+      esferaSelect.addEventListener('change', performFilter);
+      // Executa uma vez no início para atualizar o contador baseado no estado inicial
+      performFilter();
+    }
+  }
+
+  // Inicializa na carga da página
+  initFilters();
+
+  // Reinicializa se houver navegação via View Transitions do Astro (astro:page-load)
+  document.addEventListener('astro:page-load', initFilters);
+</script>
+
+<style>
+  .project-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+
+
+# === Fim do arquivo: ./src/components/FilterBar.astro ===
+
 # === Início do arquivo: ./src/components/GithubAuth.astro ===
 
 ---
@@ -7245,6 +7776,31 @@ const editUrl = `${repo}/edit/main/${path}`;
 
 
 # === Fim do arquivo: ./src/components/GithubAuth.astro ===
+
+# === Início do arquivo: ./src/components/RevisionHistory.astro ===
+
+---
+const { revisions = [] } = Astro.props;
+---
+
+<div class="mt-10">
+  <h3 class="font-bold mb-4">Histórico</h3>
+
+  {revisions.length === 0 ? (
+    <p class="text-sm text-gray-400">Sem histórico</p>
+  ) : (
+    revisions.map(r => (
+      <div class="mb-4 border-l-2 pl-3 border-blue-500">
+        <div class="font-bold text-sm">{r.autor}</div>
+        <div class="text-xs text-gray-400">{r.data}</div>
+        <div class="text-sm">{r.mensagem}</div>
+      </div>
+    ))
+  )}
+</div>
+
+
+# === Fim do arquivo: ./src/components/RevisionHistory.astro ===
 
 # === Início do arquivo: ./src/components/Search.astro ===
 
@@ -7323,177 +7879,349 @@ const editUrl = `${repo}/edit/main/${path}`;
 
 # === Fim do arquivo: ./src/components/Search.astro ===
 
+# === Início do arquivo: ./src/lib/diff.js ===
+
+import { diffLines } from 'diff';
+
+export function getDiff(oldText, newText) {
+    return diffLines(oldText, newText);
+}
+
+
+# === Fim do arquivo: ./src/lib/diff.js ===
+
+# === Início do arquivo: ./src/lib/github.js ===
+
+export async function getCommits(repo, path) {
+    const url = `https://api.github.com/repos/${repo}/commits?path=${path}`;
+
+    const res = await fetch(url);
+
+    if (!res.ok) return [];
+
+    const data = await res.json();
+
+    return data.map(c => ({
+        autor: c.commit.author.name,
+        data: c.commit.author.date,
+        mensagem: c.commit.message,
+        sha: c.sha
+    }));
+}
+
+
+# === Fim do arquivo: ./src/lib/github.js ===
+
+# === Início do arquivo: ./src/lib/timeline.js ===
+
+export function classifyCommit(msg) {
+    msg = msg.toLowerCase();
+
+    if (msg.includes('fix')) return 'correção técnica';
+    if (msg.includes('feat')) return 'adição normativa';
+    if (msg.includes('refactor')) return 'reorganização';
+    if (msg.includes('remove')) return 'revogação';
+
+    return 'alteração geral';
+}
+
+export function buildTimeline(commits) {
+    return commits.map(c => ({
+        ...c,
+        tipo: classifyCommit(c.mensagem)
+    }));
+}
+
+
+# === Fim do arquivo: ./src/lib/timeline.js ===
+
+# === Início do arquivo: ./src/utils/tField.ts ===
+
+export function tField(field: unknown, lang: string = 'pt'): string {
+  // null ou undefined
+  if (field === null || field === undefined) return '';
+
+  // string direta
+  if (typeof field === 'string') return field;
+
+  // objeto multilíngue
+  if (typeof field === 'object') {
+    const obj = field as Record<string, unknown>;
+
+    const value =
+    obj[lang] ??
+    obj['pt'] ??
+    obj['en'];
+
+    // se já for string → retorna
+    if (typeof value === 'string') return value;
+
+    // fallback seguro (evita [object Object])
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return '';
+    }
+  }
+
+  // número, boolean etc
+  return String(field);
+}
+
+
+# === Fim do arquivo: ./src/utils/tField.ts ===
+
 # === Início do arquivo: ./src/layouts/BaseLayout.astro ===
 
 ---
-// 1. Importação dos Estilos Globais (Tailwind + Tipografia Jurídica)
+// src/layouts/BaseLayout.astro
 import '../styles/global.css';
-
-// 2. Importação de Componentes Estruturais
 import Search from '../components/Search.astro';
 import AdminTrigger from '../components/AdminTrigger.astro';
 import GithubAuth from '../components/GithubAuth.astro';
 
+// i18n
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+import { tField } from '../utils/tField';
+
 interface Props {
-	title: string;
+	title: any;
 	description?: string;
 	image?: string;
 }
 
+// 🔥 1. PROPS
 const {
-    title,
-    description = "Plataforma aberta onde a sociedade civil redige, debate e audita propostas legislativas via GitHub.",
-    image = "/web-app-manifest-512x512.png"
+	title,
+	description = "Plataforma aberta onde a sociedade civil redige, debate e audita propostas legislativas via GitHub.",
+	image = "/web-app-manifest-512x512.png"
 } = Astro.props;
 
-// Lógica de URLs para SEO
+// 🔥 2. LANG
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 🔥 3. SAFE TITLE
+const safeTitle = tField(title, lang) || "LexLab";
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
-const socialImageURL = new URL(image, Astro.site || 'http://localhost:4321');
 ---
 
 <!DOCTYPE html>
-<html lang="pt-br" class="h-full scroll-smooth">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang={lang} class="h-full scroll-smooth">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
 
-		<!-- 1. FAVICON ESSENCIAL (Obrigatórios na raiz de /public) -->
-		<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
-		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=2" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+	<title>{safeTitle} | LEXLAB</title>
+	<meta name="description" content={description} />
+	<link rel="canonical" href={canonicalURL} />
 
-		<!-- 2. WEB APP MANIFEST (Configuração PWA) -->
-		<link rel="manifest" href="/site.webmanifest" />
-		<meta name="theme-color" content="#2563eb" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-title" content="LexLab" />
+	<!-- 🔥 FONTES MODERNAS (SEM SERIFA) -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-		<meta name="generator" content={Astro.generator} />
+	<link href="https://fonts.googleapis.com/css2?
+	family=Inter:wght@400;600;700;900&
+	family=Space+Grotesk:wght@500;700&
+	display=swap" rel="stylesheet">
+</head>
 
-		<!-- 3. SEO E SOCIAL CARDS -->
-		<title>{title} | LEXLAB</title>
-		<meta name="title" content={`${title} | LEXLAB`} />
-		<meta name="description" content={description} />
-		<link rel="canonical" href={canonicalURL} />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content={`${title} | LEXLAB`} />
-		<meta property="og:image" content={new URL(image, Astro.site || 'http://localhost:4321')} />
-		<meta property="twitter:card" content="summary_large_image" />
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-full flex flex-col">
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-	</head>
+	<!-- HEADER -->
+	<header class="no-print sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+		<div class="max-w-7xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between gap-4">
 
-	<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-full flex flex-col">
-		<header class="no-print sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-			<div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4 md:gap-8">
-				<div class="flex items-center gap-3 shrink-0">
-					<a href="/" class="flex items-center gap-3 group">
-						<!-- Logo usando SVG para nitidez absoluta -->
-						<div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex items-center justify-center">
-							<img src="/favicon.svg?v=2" alt="LexLab" class="w-full h-full p-1.5" />
-						</div>
-						<span class="font-black tracking-tighter text-2xl hidden sm:block uppercase italic">
-							LEX<span class="text-blue-600">LAB</span>
-						</span>
-					</a>
+			<!-- LOGO -->
+			<a href={`/?lang=${lang}`} class="flex items-center gap-3 group">
+
+				<div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow border bg-white flex items-center justify-center">
+					<img src="/favicon.svg" alt="LexLab" class="w-full h-full p-1.5" />
 				</div>
 
-				<!-- Componente de Busca Global -->
-				<div class="flex-1 max-w-xl hidden md:block">
-					<Search />
-				</div>
+				<h1 class="lexlab-title hidden sm:flex">
+					<span class="lexlab-main">LEX</span>
+					<span class="lexlab-accent">LAB</span>
+				</h1>
 
-				<!-- Navegação e Identidade -->
-				<nav class="flex items-center gap-3 md:gap-6 shrink-0">
-					<a href="/como-contribuir" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors hidden lg:block">Manual</a>
+			</a>
 
-                    <GithubAuth />
+			<!-- SEARCH -->
+			<div class="flex-1 max-w-xl hidden md:block">
+				<Search />
+			</div>
 
-					<button
-                        onclick="window.print()"
-                        class="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg hover:bg-blue-600 transition-all active:scale-95 flex items-center gap-2"
-                    >
-						<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                        PDF
+			<!-- NAV -->
+			<nav class="flex items-center gap-2 sm:gap-4 md:gap-6">
+
+				<a href={`/transparencia?lang=${lang}`} class="nav-link">
+					{t('nav.transparency')}
+				</a>
+
+				<a href={`/como-contribuir?lang=${lang}`} class="nav-link hidden lg:block">
+					{t('nav.manual')}
+				</a>
+
+				<!-- LANGUAGE -->
+				<div class="relative group">
+					<button class="lang-btn">
+						{lang.toUpperCase()}
 					</button>
-				</nav>
-			</div>
-		</header>
 
-		<!-- CONTEÚDO PRINCIPAL (Flex-grow garante o footer no rodapé) -->
-		<main class="flex-grow w-full">
-			<slot />
-		</main>
-
-		<!-- GATILHO DE DEPLOY -->
-		<AdminTrigger />
-
-		<!-- RODAPÉ (FOOTER) -->
-		<footer class="bg-white border-t border-slate-200 py-20 px-6 no-print mt-auto">
-			<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-                <!-- Logotipo no rodapé -->
-				<img src="/favicon.svg?v=1" alt="LexLab Logo" class="w-12 h-12 mb-6 opacity-40 grayscale hover:grayscale-0 transition-all cursor-default" />
-
-				<p class="font-black tracking-tighter text-2xl mb-4 uppercase italic">Lex<span class="text-blue-600">Lab</span></p>
-				<p class="text-slate-500 text-sm max-w-md leading-relaxed mb-10 font-serif italic">
-					Construindo a soberania legislativa por meio da transparência tecnológica e colaboração popular aberta.
-				</p>
-
-				<div class="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
-					<a href="/" class="hover:text-blue-600 transition-colors">Portal de Projetos</a>
-					<a href="/como-contribuir" class="hover:text-blue-600 transition-colors">Manual do Colaborador</a>
-					<a href="https://github.com/goldenluke/lexlab" target="_blank" class="hover:text-blue-600 transition-colors">GitHub Oficial</a>
+					<div class="lang-dropdown">
+						{Object.entries(languages).map(([code, label]) => {
+							const currentUrl = new URL(Astro.url.href);
+							currentUrl.searchParams.set('lang', code);
+							return (
+								<a
+									href={currentUrl.search}
+									class={`lang-item ${lang === code ? 'active' : ''}`}
+								>
+									{label}
+								</a>
+							);
+						})}
+					</div>
 				</div>
 
-				<div class="w-full pt-8 border-t border-slate-100 flex flex-col items-center">
-					<p class="text-[9px] text-slate-400 uppercase tracking-widest leading-loose">
-						Licença MIT © 2024 — LexLab & Comunidade <br/>
-						Conteúdo das minutas sob licença Creative Commons (CC BY-SA 4.0).
-					</p>
-				</div>
+				<GithubAuth />
+			</nav>
+
+		</div>
+	</header>
+
+	<main class="flex-grow w-full">
+		<slot />
+	</main>
+
+	<AdminTrigger />
+
+	<!-- FOOTER -->
+	<footer class="bg-white border-t border-slate-200 py-16 px-6 mt-auto">
+		<div class="max-w-7xl mx-auto text-center">
+
+			<h2 class="lexlab-title justify-center mb-4">
+				<span class="lexlab-main">LEX</span>
+				<span class="lexlab-accent">LAB</span>
+			</h2>
+
+			<p class="text-slate-500 text-sm max-w-md mx-auto italic mb-10">
+				{t('hero.subtitle')}
+			</p>
+
+			<div class="footer-links">
+				<a href={`/?lang=${lang}`}>{t('nav.home')}</a>
+				<a href={`/transparencia?lang=${lang}`}>{t('nav.transparency')}</a>
+				<a href="https://github.com/goldenluke/lexlab" target="_blank">GitHub</a>
 			</div>
-		</footer>
 
-		<!-- ESTILOS GLOBAIS DE TIPOGRAFIA JURÍDICA -->
-		<style is:global>
-			/* Estilização Global para o conteúdo Markdown */
-			.markdown-content, .prose-legal {
-				@apply font-serif leading-relaxed text-slate-800 text-justify;
-			}
+			<p class="footer-copy">
+				Licença MIT © 2026 — LexLab & Comunidade <br/>
+				{t('footer.rights')}
+			</p>
+		</div>
+	</footer>
 
-			.markdown-content h1, .prose-legal h1 { @apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase tracking-tighter; }
-			.markdown-content h2, .prose-legal h2 { @apply font-sans font-bold text-2xl mt-12 mb-4 text-slate-800 border-l-4 border-blue-600 pl-4; }
-			.markdown-content h3, .prose-legal h3 { @apply font-sans font-bold text-xl mt-8 mb-3 text-slate-700; }
-			.markdown-content p, .prose-legal p { @apply mb-6 text-lg; }
-			.markdown-content b, .markdown-content strong, .prose-legal strong { @apply font-black text-slate-950; }
+	<!-- 🎨 ESTILO GLOBAL -->
+	<style is:global>
 
-			.markdown-content blockquote, .prose-legal blockquote {
-				@apply border-l-4 border-slate-300 pl-6 italic text-slate-500 my-10 bg-slate-50/50 py-4 pr-4 rounded-r-2xl shadow-sm;
-			}
+		.nav-link {
+			@apply text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition;
+		}
 
-            .markdown-content ul, .prose-legal ul { @apply list-disc ml-6 mb-8 space-y-3; }
-            .markdown-content ol, .prose-legal ol { @apply list-decimal ml-6 mb-8 space-y-3; }
+		.lang-btn {
+			@apply px-3 py-2 bg-slate-100 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition;
+		}
 
-			/* Estilos para a Barra de Rolagem Customizada */
-			::-webkit-scrollbar { width: 8px; }
-			::-webkit-scrollbar-track { background: #f8fafc; }
-			::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid #f8fafc; }
-			::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+		.lang-dropdown {
+			@apply absolute right-0 mt-2 w-40 bg-white border border-slate-200 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition p-2;
+		}
 
-			/* CONFIGURAÇÃO DE IMPRESSÃO (Papel A4 Oficial) */
-			@media print {
-				.no-print { display: none !important; }
-				body { background: white !important; padding: 0 !important; }
-				.markdown-content, .prose-legal { font-size: 12pt; color: black; line-height: 1.5; }
-				.bg-white, .bg-slate-50, .bg-slate-900 { background: transparent !important; color: black !important; box-shadow: none !important; border: none !important; }
-                header, footer { border: none !important; margin: 0 !important; padding: 0 !important; }
-                .markdown-content h2, .prose-legal h2 { border-left: 2px solid black !important; }
-			}
-		</style>
-	</body>
+		.lang-item {
+			@apply block px-4 py-2 text-[10px] font-bold rounded-lg hover:bg-slate-50;
+		}
+
+		.lang-item.active {
+			@apply bg-blue-50 text-blue-600;
+		}
+
+		.footer-links {
+			@apply flex flex-wrap justify-center gap-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-10;
+		}
+
+		.footer-copy {
+			@apply text-[9px] text-slate-400 uppercase tracking-widest;
+		}
+
+		/* 🔥 LEXLAB BRANDING (SEM SERIFA) */
+		.lexlab-title {
+			font-family: 'Space Grotesk', sans-serif !important;
+			font-weight: 700;
+			letter-spacing: -0.04em;
+			text-transform: uppercase;
+			display: flex;
+			align-items: center;
+		}
+
+		.lexlab-main {
+			color: #0f172a;
+		}
+
+		.lexlab-accent {
+			color: #2563eb;
+			margin-left: 0.25em;
+			position: relative;
+		}
+
+		.lexlab-accent::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			bottom: -2px;
+			width: 100%;
+			height: 2px;
+			background: #2563eb;
+			opacity: 0.6;
+		}
+
+		/* MARKDOWN */
+		.markdown-content, .prose-legal {
+			@apply font-serif leading-relaxed text-slate-800 text-justify;
+		}
+
+		.markdown-content h1 {
+			@apply font-sans font-black text-4xl mb-8 text-slate-900 text-center uppercase;
+		}
+
+		.markdown-content h2 {
+			@apply font-sans font-bold text-2xl mt-12 mb-4 border-l-4 border-blue-600 pl-4;
+		}
+
+		.markdown-content p {
+			@apply mb-6 text-lg;
+		}
+
+		@media print {
+			.no-print { display: none !important; }
+			body { background: white !important; }
+		}
+
+	</style>
+
+	<!-- persistência idioma -->
+	<script is:inline>
+		const urlParams = new URLSearchParams(window.location.search);
+		const langParam = urlParams.get('lang');
+		if (langParam) {
+			localStorage.setItem('lexlab_lang', langParam);
+		}
+	</script>
+
+</body>
 </html>
 
 
@@ -7503,11 +8231,31 @@ const socialImageURL = new URL(image, Astro.site || 'http://localhost:4321');
 
 {
   "id": "pl-neuro-sus",
-  "titulo": "Garantia de Acesso à Avaliação Neuropsicológica no Sistema Único de Saúde (SUS)",
+
+  "titulo": {
+    "pt": "Garantia de Acesso à Avaliação Neuropsicológica no Sistema Único de Saúde (SUS)",
+    "en": "Guarantee of Access to Neuropsychological Assessment in the Public Health System (SUS)"
+  },
+
   "autor": "Comunidade de Saúde e Direito",
+
   "status": "Em Desenvolvimento",
-  "tags": ["Saúde", "SUS", "Neuropsicologia"],
-  "github_repo": "https://github.com/goldenluke/lexlab"
+
+  "tags": [
+    "Saúde",
+    "SUS",
+    "Neuropsicologia"
+  ],
+
+  "github_repo": "https://github.com/goldenluke/lexlab",
+
+  "esfera": "Federal",
+
+  "localizacao": {
+    "pais": "Brasil",
+    "estado": "Todos",
+    "municipio": "Todos"
+  }
 }
 
 
@@ -7629,8 +8377,7 @@ Trata-se, portanto, de iniciativa legislativa orientada à recomposição da efi
 
 # === Início do arquivo: ./src/leis/src/projetos-leis/pl-neuro-sus/docs/01-exposicao.md ===
 
-# Exposição de Motivos
-Este projeto visa reduzir a lacuna diagnóstica no sistema público.
+
 
 
 # === Fim do arquivo: ./src/leis/src/projetos-leis/pl-neuro-sus/docs/01-exposicao.md ===
@@ -7790,10 +8537,14 @@ Além disso, o direito comparado funciona como argumento de racionalidade instit
 
 {
   "id": "pl-neuro-sus",
-  "titulo": "Garantia de Acesso à Avaliação Neuropsicológica no Sistema Único de Saúde (SUS)",
-  "autor": "Comunidade de Saúde e Direito",
+  "titulo": "Garantia de Acesso à Avaliação Neuropsicológica no SUS",
+  "esfera": "Federal",
+  "localizacao": {
+    "pais": "Brasil",
+    "estado": "Todos",
+    "municipio": "Todos"
+  },
   "status": "Em Desenvolvimento",
-  "tags": ["Saúde", "SUS", "Neuropsicologia"],
   "github_repo": "https://github.com/goldenluke/lexlab"
 }
 
@@ -7908,14 +8659,6 @@ Nesse sentido, o projeto não cria direito novo, nem introduz tecnologia experim
 
 # === Fim do arquivo: ./src/projetos-leis/pl-neuro-sus/docs/01-exposicao-motivos.md ===
 
-# === Início do arquivo: ./src/projetos-leis/pl-neuro-sus/docs/01-exposicao.md ===
-
-# Exposição de Motivos
-Este projeto visa reduzir a lacuna diagnóstica no sistema público.
-
-
-# === Fim do arquivo: ./src/projetos-leis/pl-neuro-sus/docs/01-exposicao.md ===
-
 # === Início do arquivo: ./src/projetos-leis/pl-neuro-sus/docs/02-fundamentacao-teorica.md ===
 
 # II – FUNDAMENTAÇÃO TEÓRICA ANEXA
@@ -7956,6 +8699,117 @@ A experiência internacional reforça que a previsão normativa no SUS é materi
 
 
 # === Fim do arquivo: ./src/projetos-leis/pl-neuro-sus/docs/03-direito-comparado.md ===
+
+# === Início do arquivo: ./src/i18n/ui.ts ===
+
+export const languages = {
+    pt: 'Português',
+    en: 'English',
+    es: 'Español',
+    fr: 'Français',
+    de: 'Deutsch',
+};
+
+export const defaultLang = 'pt';
+
+export const ui = {
+    pt: {
+        'nav.manual': 'Manual',
+        'nav.transparency': 'Transparência',
+        'nav.home': 'Início',
+        'hero.subtitle': 'A inteligência coletiva codificando o futuro legislativo.',
+        'project.status': 'Status',
+        'project.analyze': 'Analisar Minuta',
+        'filter.placeholder': 'Filtrar por título, cidade ou estado...',
+        'audit.title': 'Rastro de Auditoria',
+    },
+    en: {
+        'nav.manual': 'Handbook',
+        'nav.transparency': 'Transparency',
+        'nav.home': 'Home',
+        'hero.subtitle': 'Collective intelligence coding the legislative future.',
+        'project.status': 'Status',
+        'project.analyze': 'Analyze Draft',
+        'filter.placeholder': 'Filter by title, city or state...',
+        'audit.title': 'Audit Trail',
+    },
+    es: {
+        'nav.manual': 'Manual',
+        'nav.transparency': 'Transparencia',
+        'nav.home': 'Inicio',
+        'hero.subtitle': 'La inteligencia colectiva codificando el futuro legislativo.',
+        'project.status': 'Estado',
+        'project.analyze': 'Analizar Borrador',
+        'filter.placeholder': 'Filtrar por título, ciudad o estado...',
+        'audit.title': 'Rastro de Auditoría',
+    },
+    fr: {
+        'nav.manual': 'Manuel',
+        'nav.transparency': 'Transparence',
+        'nav.home': 'Accueil',
+        'hero.subtitle': "L'intelligence collective codant l'avenir législatif.",
+        'project.status': 'Statut',
+        'project.analyze': 'Analyser le projet',
+        'filter.placeholder': 'Filtrer par titre, ville ou état...',
+        'audit.title': "Piste d'audit",
+    },
+    de: {
+        'nav.manual': 'Handbuch',
+        'nav.transparency': 'Transparenz',
+        'nav.home': 'Startseite',
+        'hero.subtitle': 'Kollektive Intelligenz kodiert die legislative Zukunft.',
+        'project.status': 'Status',
+        'project.analyze': 'Entwurf analysieren',
+        'filter.placeholder': 'Nach Titel, Stadt oder Bundesland filtern...',
+        'audit.title': 'Audit-Trail',
+    }
+} as const;
+
+
+# === Fim do arquivo: ./src/i18n/ui.ts ===
+
+# === Início do arquivo: ./src/i18n/utils.ts ===
+
+// src/i18n/utils.ts
+import { ui, defaultLang } from './ui';
+
+/**
+ * Captura o idioma atual a partir dos parâmetros de busca da URL (?lang=en).
+ */
+export function getLangFromUrl(url: URL) {
+    const params = new URLSearchParams(url.search);
+    const lang = params.get('lang');
+
+    // Verifica se o idioma existe no dicionário, senão retorna o padrão
+    if (lang && lang in ui) {
+        return lang as keyof typeof ui;
+    }
+
+    return defaultLang;
+}
+
+/**
+ * Hook de tradução simplificado para evitar erros de compilação.
+ */
+export function useTranslations(lang: keyof typeof ui) {
+    return function t(key: string) {
+        // Tenta buscar no idioma selecionado, faz fallback para o padrão (pt),
+        // e se não existir em nenhum, retorna a própria chave.
+        // @ts-ignore
+        return ui[lang][key] || ui[defaultLang][key] || key;
+    }
+}
+
+/**
+ * Utilitário para manter o idioma nos links internos.
+ */
+export function withLang(path: string, lang: string) {
+    const connector = path.includes('?') ? '&' : '?';
+    return `${path}${connector}lang=${lang}`;
+}
+
+
+# === Fim do arquivo: ./src/i18n/utils.ts ===
 
 # === Início do arquivo: ./src/pages/como-contribuir.astro ===
 
@@ -8186,146 +9040,161 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Configuração do Repositório para os botões de ação
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FilterBar from '../components/FilterBar.astro';
+
+// i18n
+import { getLangFromUrl } from '../i18n/utils';
+import { tField } from '../utils/tField';
+
+const lang = getLangFromUrl(Astro.url);
+
 const REPO_URL = "https://github.com/goldenluke/lexlab";
 
-// CAMINHO SINCRONIZADO: Aponta para a estrutura profunda onde as leis residem
+// =========================
+// LOAD PROJECTS
+// =========================
 const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
-// Lógica de busca de projetos com tratamento de erros e filtros de segurança
 let projects = [];
 
 if (fs.existsSync(lawsDir)) {
   projects = fs.readdirSync(lawsDir)
     .filter(folder => {
       const fullPath = path.join(lawsDir, folder);
-      // Verifica se é uma pasta e se contém o config.json necessário
-      try {
-        return fs.lstatSync(fullPath).isDirectory() && fs.existsSync(path.join(fullPath, 'config.json'));
-      } catch (e) {
-        return false;
-      }
+      return fs.lstatSync(fullPath).isDirectory();
     })
     .map(folder => {
       try {
         const configPath = path.join(lawsDir, folder, 'config.json');
-        const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
-        // Garante que o ID usado na URL seja o nome da pasta física
-        return { ...configData, id: folder };
-      } catch (e) {
-        console.error(`Erro ao carregar projeto na pasta ${folder}:`, e);
+        if (!fs.existsSync(configPath)) return null;
+
+        const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+        return {
+          ...config,
+          id: folder,
+          tituloFormatado: tField(config.titulo, lang) // 🔥 CORRETO
+        };
+      } catch {
         return null;
       }
     })
-    .filter(p => p !== null);
+    .filter(Boolean);
 }
 ---
 
-<BaseLayout title="Portal de Legislação Colaborativa">
+<BaseLayout title="LexLab">
 
-  <!-- SEÇÃO HERO -->
-  <header class="bg-white border-b border-slate-200 pt-24 pb-36 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-block bg-blue-600 text-white p-3 rounded-2xl mb-8 shadow-xl shadow-blue-100">
-        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-        </svg>
-      </div>
-      <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 mb-6 leading-none uppercase italic">
-        LEX<span class="text-blue-600">LAB</span>
+  <!-- HERO -->
+  <header class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white px-4 py-20 sm:py-28 md:py-32">
+
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,white,transparent)]"></div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+
+      <h1 class="lexlab-hero">
+        <span class="lexlab-main">LEX</span>
+        <span class="lexlab-accent">LAB</span>
       </h1>
-      <p class="text-xl md:text-2xl text-slate-500 font-serif italic max-w-2xl mx-auto leading-relaxed">
-        Plataforma de inteligência coletiva para a redação de leis fundamentadas no Direito Achado na Rua.
+
+      <p class="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-slate-300 font-serif italic max-w-2xl mx-auto">
+        A inteligência coletiva codificando o futuro legislativo.
       </p>
+
+      <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center">
+
+        <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
+           target="_blank"
+           class="w-full sm:w-auto text-center px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-bold shadow-lg transition">
+          Protocolar Nova Lei
+        </a>
+
+        <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
+           target="_blank"
+           class="w-full sm:w-auto text-center px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur rounded-xl font-bold border border-white/20 transition">
+          Relatar Falha Jurídica
+        </a>
+
+      </div>
+
     </div>
   </header>
 
-  <!-- BARRA DE AÇÕES: Integração GitHub -->
-  <section class="max-w-6xl mx-auto px-4 -mt-16 mb-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-      <!-- Botão: Propor Novo Projeto -->
-      <a href={`${REPO_URL}/issues/new?template=novo-projeto.yml`}
-         target="_blank"
-         class="flex items-center gap-6 p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl hover:bg-blue-700 transition-all group active:scale-95">
-        <div class="bg-white/10 p-5 rounded-2xl group-hover:scale-110 transition-transform">
-          <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold">Propor Novo Projeto</h3>
-          <p class="text-slate-400 text-sm">Inicie um rascunho de lei via GitHub.</p>
-        </div>
-      </a>
-
-      <!-- Botão: Relatar Falha -->
-      <a href={`${REPO_URL}/issues/new?template=lacuna-normativa.yml`}
-         target="_blank"
-         class="flex items-center gap-6 p-8 bg-white border border-slate-200 text-slate-900 rounded-[2.5rem] shadow-2xl hover:border-red-400 transition-all group active:scale-95">
-        <div class="bg-red-50 p-5 rounded-2xl group-hover:scale-110 transition-transform">
-          <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold">Relatar Erro ou Lacuna</h3>
-          <p class="text-sm text-slate-500">Denuncie brechas em proposições ativas.</p>
-        </div>
-      </a>
-
-    </div>
+  <!-- FILTRO -->
+  <section class="max-w-6xl mx-auto px-4 mt-8 sm:mt-12">
+    <FilterBar />
   </section>
 
-  <!-- LISTA DE PROJETOS -->
-  <main class="max-w-7xl mx-auto px-4 py-12">
-    <div class="flex items-center justify-between mb-16 px-4">
-      <h2 class="text-3xl font-black text-slate-800 uppercase italic tracking-tighter">Projetos Ativos</h2>
-      <div class="h-px flex-1 bg-slate-200 mx-8 hidden sm:block"></div>
-      <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">
-        {projects.length} {projects.length === 1 ? 'Lei Detectada' : 'Leis Detectadas'}
-      </span>
+  <!-- LISTAGEM -->
+  <main class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-10 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 uppercase italic">
+        Acervo Legislativo
+      </h2>
+      <div class="hidden sm:block flex-1 h-px bg-slate-200"></div>
     </div>
 
-    {projects.length === 0 ? (
-      <div class="text-center py-24 bg-slate-100 rounded-[3rem] border-2 border-dashed border-slate-200 mx-4">
-        <p class="text-slate-400 font-medium italic">Nenhum projeto encontrado no caminho de diretórios.</p>
-        <p class="text-xs text-slate-300 mt-2 font-mono">{lawsDir}</p>
-      </div>
-    ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projects.map(p => (
-          <div class="bg-white border border-slate-200 p-10 rounded-[3.5rem] shadow-sm hover:shadow-2xl transition-all flex flex-col group border-b-[12px] border-b-blue-600 mx-4 md:mx-0">
-            <div class="flex-1">
-              <div class="mb-6">
-                <span class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest border border-blue-100">
-                  {p.status}
-                </span>
-              </div>
-              <h2 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight min-h-[4rem]">
-                {p.titulo}
-              </h2>
-              <p class="text-sm text-slate-400 mb-8 italic">Relatoria: <span class="text-slate-600 font-bold not-italic">{p.autor}</span></p>
-
-              <div class="flex flex-wrap gap-2">
-                {p.tags && p.tags.map((tag) => (
-                  <span class="text-[9px] font-bold text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100 uppercase tracking-tighter">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <a href={`/projeto/${p.id}`}
-               class="mt-10 block text-center py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-blue-600 shadow-lg active:scale-95">
-              Analisar Documentação
-            </a>
-          </div>
-        ))}
-      </div>
+    {projects.length === 0 && (
+      <p class="text-center text-slate-400">
+        Nenhum projeto encontrado.
+      </p>
     )}
+
+    <div class="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+
+      {projects.map(p => (
+        <div class="group bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-2xl transition-all flex flex-col h-full">
+
+          <!-- TAGS -->
+          <div class="flex flex-wrap gap-2 mb-4 sm:mb-5">
+
+            {p.status && (
+              <span class="px-2.5 py-1 text-[9px] sm:text-[10px] font-black uppercase bg-blue-50 text-blue-600 rounded-lg">
+                {p.status}
+              </span>
+            )}
+
+            {p.esfera && (
+              <span class="px-2.5 py-1 text-[9px] sm:text-[10px] font-black uppercase bg-slate-900 text-white rounded-lg">
+                {p.esfera}
+              </span>
+            )}
+
+          </div>
+
+          <!-- TÍTULO -->
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-3 sm:mb-4 leading-snug group-hover:text-blue-600 transition">
+            {p.tituloFormatado}
+          </h2>
+
+          <!-- AUTOR -->
+          <p class="text-xs sm:text-sm text-slate-400 mb-4 sm:mb-6 italic">
+            Relatoria: <span class="text-slate-700 font-semibold">{p.autor}</span>
+          </p>
+
+          <!-- LOCAL -->
+          {p.localizacao?.pais && (
+            <div class="mb-4 sm:mb-6 text-[10px] sm:text-xs text-emerald-700 font-bold uppercase">
+              📍 {p.localizacao.pais}
+            </div>
+          )}
+
+          <!-- BOTÃO -->
+          <a
+            href={`/projeto/${p.id}`}
+            class="mt-auto text-center py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition text-sm sm:text-base"
+          >
+            Analisar Minuta
+          </a>
+
+        </div>
+      ))}
+
+    </div>
+
   </main>
 
 </BaseLayout>
@@ -8341,97 +9210,253 @@ import { stripHtml } from 'string-strip-html';
 import { marked } from 'marked';
 
 export async function GET() {
-    // CAMINHO EXATO:
+    // Caminho para o diretório onde as leis estão armazenadas
     const lawsDir = path.resolve('./src/leis/src/projetos-leis');
 
-    if (!fs.existsSync(lawsDir)) return new Response(JSON.stringify([]));
+    if (!fs.existsSync(lawsDir)) {
+        return new Response(JSON.stringify([]), {
+            headers: { 'Content-Type': 'application/json' }
+        });
+    }
 
-    const folders = fs.readdirSync(lawsDir).filter(f => fs.lstatSync(path.join(lawsDir, f)).isDirectory());
+    const folders = fs.readdirSync(lawsDir).filter(f =>
+    fs.lstatSync(path.join(lawsDir, f)).isDirectory()
+    );
+
     const searchIndex = [];
 
     folders.forEach(folder => {
         const projectPath = path.join(lawsDir, folder);
-        const config = JSON.parse(fs.readFileSync(path.join(projectPath, 'config.json'), 'utf-8'));
+        const configPath = path.join(projectPath, 'config.json');
 
-        ['docs', 'artigos'].forEach(sub => {
-            const subPath = path.join(projectPath, sub);
-            if (fs.existsSync(subPath)) {
-                fs.readdirSync(subPath).forEach(file => {
-                    if (file.endsWith('.md')) {
-                        const rawContent = fs.readFileSync(path.join(subPath, file), 'utf-8');
-                        const cleanText = stripHtml(marked.parse(rawContent)).result;
-                        searchIndex.push({
-                            tituloProjeto: config.titulo,
-                            conteudo: cleanText,
-                            url: `/projeto/${folder}`
+        if (fs.existsSync(configPath)) {
+            try {
+                const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+                // Mapeia as subpastas de conteúdo para indexação
+                ['docs', 'artigos'].forEach(sub => {
+                    const subPath = path.join(projectPath, sub);
+
+                    if (fs.existsSync(subPath)) {
+                        fs.readdirSync(subPath).forEach(file => {
+                            if (file.endsWith('.md')) {
+                                const rawContent = fs.readFileSync(path.join(subPath, file), 'utf-8');
+
+                                // Converte Markdown para HTML e depois remove as tags para indexar texto limpo
+                                const htmlContent = marked.parse(rawContent);
+                                const cleanText = stripHtml(htmlContent).result;
+
+                                searchIndex.push({
+                                    id: config.id,
+                                    url: `/projeto/${folder}`,
+                                    tituloProjeto: config.titulo,
+                                    secao: file.replace('.md', '').toUpperCase(),
+                                                 conteudo: cleanText,
+                                                 // Novos metadados de localização para busca refinada
+                                                 esfera: config.esfera || 'Não informada',
+                                                 pais: config.localizacao?.pais || '',
+                                                 estado: config.localizacao?.estado || '',
+                                                 municipio: config.localizacao?.municipio || '',
+                                                 // Campo auxiliar para facilitar a busca por "Estado Cidade"
+                                                 localizacaoCompleta: `${config.localizacao?.municipio} ${config.localizacao?.estado} ${config.localizacao?.pais}`
+                                });
+                            }
                         });
                     }
                 });
+            } catch (e) {
+                console.error(`Erro ao indexar o projeto ${folder}:`, e);
             }
-        });
+        }
     });
 
-    return new Response(JSON.stringify(searchIndex));
+    return new Response(JSON.stringify(searchIndex), {
+        headers: {
+            'Content-Type': 'application/json',
+            // Cache opcional: evita processamento pesado em cada requisição se o site for SSR
+            'Cache-Control': 'public, max-age=3600'
+        }
+    });
 }
 
 
 # === Fim do arquivo: ./src/pages/search-index.json.js ===
 
-# === Início do arquivo: ./src/pages/projeto/[id].astro ===
+# === Início do arquivo: ./src/pages/transparencia.astro ===
 
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Sincronização de dados
+const lawsDir = path.resolve('./src/leis/src/projetos-leis');
+let stats = {
+  totalLeis: 0,
+  porEsfera: { Federal: 0, Estadual: 0, Municipal: 0 },
+  estadosMaisAtivos: {} as Record<string, number>,
+  tagsPopulares: {} as Record<string, number>
+};
+
+if (fs.existsSync(lawsDir)) {
+  const folders = fs.readdirSync(lawsDir).filter(f => fs.lstatSync(path.join(lawsDir, f)).isDirectory());
+  stats.totalLeis = folders.length;
+
+  folders.forEach(folder => {
+    const configPath = path.join(lawsDir, folder, 'config.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+
+      // Contagem por Esfera
+      if (config.esfera) stats.porEsfera[config.esfera]++;
+
+      // Contagem por Estado
+      const estado = config.localizacao?.estado;
+      if (estado && estado !== 'Todos') {
+        stats.estadosMaisAtivos[estado] = (stats.estadosMaisAtivos[estado] || 0) + 1;
+      }
+
+      // Tags mais usadas
+      config.tags?.forEach(tag => {
+        stats.tagsPopulares[tag] = (stats.tagsPopulares[tag] || 0) + 1;
+      });
+    }
+  });
+}
+
+// Ordenar estados por atividade
+const topEstados = Object.entries(stats.estadosMaisAtivos).sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout title="Painel de Transparência">
+  <main class="max-w-7xl mx-auto px-6 py-20">
+
+    <header class="mb-20 text-center">
+      <h1 class="text-5xl font-black tracking-tighter uppercase italic mb-4">
+        Métricas de <span class="text-blue-600">Soberania</span>
+      </h1>
+      <p class="text-slate-500 font-serif italic text-lg max-w-2xl mx-auto">
+        Dados em tempo real sobre a produção legislativa da comunidade LexLab em todo o território.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
+      <div class="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm text-center">
+        <span class="block text-4xl font-black text-blue-600 mb-2">{stats.totalLeis}</span>
+        <span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Minutas Ativas</span>
+      </div>
+      {Object.entries(stats.porEsfera).map(([esfera, count]) => (
+        <div class="bg-slate-900 p-8 rounded-[2.5rem] text-white text-center">
+          <span class="block text-4xl font-black mb-2">{count}</span>
+          <span class="text-[10px] font-black uppercase text-blue-400 tracking-widest">{esfera}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+      <section class="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-xl">
+        <h3 class="text-xl font-black uppercase italic mb-8 border-b pb-4">Atividade por Estado</h3>
+        <div class="space-y-6">
+          {topEstados.map(([estado, count]) => (
+            <div class="flex items-center gap-4">
+              <span class="w-32 text-sm font-bold text-slate-600">{estado}</span>
+              <div class="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600" style={`width: ${(count / stats.totalLeis) * 100}%`}></div>
+              </div>
+              <span class="text-sm font-black text-slate-900">{count}</span>
+            </div>
+          ))}
+          {topEstados.length === 0 && <p class="text-sm text-slate-400 italic">Aguardando dados regionais...</p>}
+        </div>
+      </section>
+
+      <section class="bg-slate-50 p-10 rounded-[3rem] border border-slate-200">
+        <h3 class="text-xl font-black uppercase italic mb-8 border-b border-slate-200 pb-4">Temas em Pauta</h3>
+        <div class="flex flex-wrap gap-3">
+          {Object.entries(stats.tagsPopulares).map(([tag, count]) => (
+            <div class="bg-white px-5 py-3 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+              <span class="text-sm font-bold text-slate-700">#{tag}</span>
+              <span class="bg-blue-50 text-blue-600 text-[10px] font-black px-2 py-0.5 rounded-full">{count}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="mt-20 p-10 bg-blue-50 rounded-[3rem] border border-blue-100 text-center">
+      <p class="text-blue-800 font-serif italic">
+        "O Direito não é apenas o que está nos códigos, mas o que a sociedade codifica no dia a dia."
+      </p>
+    </footer>
+
+  </main>
+</BaseLayout>
+
+
+# === Fim do arquivo: ./src/pages/transparencia.astro ===
+
+# === Início do arquivo: ./src/pages/projeto/[id].astro ===
+
+---
+// =========================
+// IMPORTS
+// =========================
+import fs from 'node:fs';
+import path from 'node:path';
 import { marked } from 'marked';
 
-// Importações com caminhos corrigidos para src/pages/projeto/[id].astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EditButton from '../../components/EditButton.astro';
 import Contributors from '../../components/Contributors.astro';
 import Comments from '../../components/Comments.astro';
 
-// 1. Definição das rotas dinâmicas (getStaticPaths)
-// Aponta para a pasta onde as leis residem na sua estrutura atual
+import { tField } from '../../utils/tField';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+// =========================
+// STATIC PATHS
+// =========================
 export async function getStaticPaths() {
-  const lawsDir = path.resolve('./src/leis/src/projetos-leis');
+  const dir = path.resolve('./src/leis/src/projetos-leis');
+  if (!fs.existsSync(dir)) return [];
 
-  if (!fs.existsSync(lawsDir)) {
-    console.warn("⚠️ [Aviso]: Diretório src/leis/src/projetos-leis não encontrado.");
-    return [];
-  }
-
-  const folders = fs.readdirSync(lawsDir).filter(f =>
-    fs.lstatSync(path.join(lawsDir, f)).isDirectory()
-  );
-
-  return folders.map(folder => ({
-    params: { id: folder }
-  }));
+  return fs.readdirSync(dir)
+    .filter(f => fs.lstatSync(path.join(dir, f)).isDirectory())
+    .map(f => ({ params: { id: f } }));
 }
 
+// =========================
+// CONFIG
+// =========================
 const { id } = Astro.params;
 const projectPath = path.resolve(`./src/leis/src/projetos-leis/${id}`);
 
-// 2. Carregar Configurações (Metadados) do Projeto
 const configPath = path.join(projectPath, 'config.json');
-if (!fs.existsSync(configPath)) {
-  return Astro.redirect('/404');
-}
-const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+if (!fs.existsSync(configPath)) return Astro.redirect('/404');
 
-// 3. Função para carregar as seções de Markdown (Docs e Artigos)
-function loadSections(subfolder: string) {
+const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+const titulo = tField(config.titulo, lang);
+
+// =========================
+// LOAD SECTIONS
+// =========================
+function loadSections(subfolder) {
   const dir = path.join(projectPath, subfolder);
   if (!fs.existsSync(dir)) return [];
 
   return fs.readdirSync(dir)
-    .filter(file => file.endsWith('.md'))
-    .sort() // Mantém a ordem 01, 02, 03...
+    .filter(f => f.endsWith('.md'))
+    .sort()
     .map(file => {
-      const content = fs.readFileSync(path.join(dir, file), 'utf-8');
+      const raw = fs.readFileSync(path.join(dir, file), 'utf-8');
+
       return {
-        html: marked.parse(content),
-        // Caminho exato para o GitHub (usado pelo EditButton)
+        raw,
+        html: marked.parse(raw),
         gitPath: `src/leis/src/projetos-leis/${id}/${subfolder}/${file}`
       };
     });
@@ -8440,158 +9465,182 @@ function loadSections(subfolder: string) {
 const docs = loadSections('docs');
 const artigos = loadSections('artigos');
 
-// Descrição para SEO
-const seoDescription = `Participe da redação colaborativa: ${config.titulo}. Proposto por ${config.autor} via LexLab.`;
+// =========================
+// DIFF WORD
+// =========================
+function wordDiff(oldStr = '', newStr = '') {
+  const oldWords = oldStr.split(/\s+/);
+
+  return newStr.split(/\s+/).map(word => {
+    if (!oldWords.includes(word)) {
+      return `<mark class="bg-green-200 px-1 rounded">${word}</mark>`;
+    }
+    return word;
+  }).join(' ');
+}
+
+// =========================
+// IMPACTO
+// =========================
+function heatLevel(text) {
+  if (text.length > 2000) return 'alto';
+  if (text.length > 800) return 'médio';
+  return 'baixo';
+}
+
+function heatColor(level) {
+  if (level === 'alto') return 'bg-red-500';
+  if (level === 'médio') return 'bg-yellow-400';
+  return 'bg-green-500';
+}
+
+// =========================
+// SEMÂNTICA
+// =========================
+function semanticType(text = '') {
+  const t = text.toLowerCase();
+
+  if (t.includes('assegurado')) return 'expansão de direito';
+  if (t.includes('vedado')) return 'restrição normativa';
+  if (t.includes('protocolos')) return 'organização administrativa';
+
+  return 'ajuste técnico';
+}
 ---
 
-<BaseLayout title={config.titulo} description={seoDescription}>
-  <main class="max-w-7xl mx-auto px-4 py-12">
+<BaseLayout title={titulo}>
 
-    <!-- CABEÇALHO DO PROJETO -->
-    <header class="mb-16">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-        <div class="max-w-4xl">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest mb-6 shadow-xl shadow-blue-100">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+<main class="max-w-7xl mx-auto px-4 py-12">
+
+  <!-- HEADER -->
+  <header class="mb-16">
+    <h1 class="text-4xl md:text-5xl font-black mb-6 uppercase italic">
+      {titulo}
+    </h1>
+
+    <p class="text-slate-500 italic">
+      Relatoria: <b class="text-slate-800">{config.autor}</b>
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+    <!-- MAIN -->
+    <div class="lg:col-span-8 space-y-12">
+
+      <!-- ===================== -->
+      <!-- 📜 FUNDAMENTAÇÃO -->
+      <!-- ===================== -->
+      {docs.length > 0 && (
+        <section class="bg-white p-10 rounded-3xl shadow border">
+
+          <h2 class="text-xs uppercase tracking-widest text-slate-400 font-black mb-8">
+            Exposição de Motivos
+          </h2>
+
+          {docs.map(doc => (
+            <div class="relative group mb-10">
+
+              <div class="markdown-content prose-legal" set:html={doc.html} />
+
+              <EditButton path={doc.gitPath} repo={config.github_repo} />
+
+            </div>
+          ))}
+
+        </section>
+      )}
+
+      <!-- ===================== -->
+      <!-- ⚖️ ARTIGOS -->
+      <!-- ===================== -->
+      {artigos.map((art, i) => {
+        const prev = artigos[i - 1]?.raw || '';
+        const diff = wordDiff(prev, art.raw);
+        const heat = heatLevel(art.raw);
+        const semantic = semanticType(art.raw);
+
+        return (
+          <div class="space-y-6">
+
+            <!-- CARD -->
+            <div class="bg-white border rounded-2xl shadow overflow-hidden">
+
+              <div class="flex justify-between px-6 py-4 bg-slate-50 border-b">
+
+                <span class="font-black uppercase text-sm">
+                  Artigo {i + 1}
                 </span>
-                {config.status}
-            </div>
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight tracking-tighter uppercase font-sans">
-                {config.titulo}
-            </h1>
-            <p class="text-xl text-slate-500 font-serif italic">
-                Proposição: <span class="text-slate-800 font-bold not-italic">{config.autor}</span>
-            </p>
-        </div>
 
-        <div class="flex flex-wrap gap-2 justify-center lg:justify-end">
-            {config.tags && config.tags.map((tag: string) => (
-              <span class="px-3 py-1 bg-white border border-slate-200 text-slate-400 rounded-lg text-[10px] font-bold uppercase tracking-widest">
-                #{tag}
-              </span>
-            ))}
-        </div>
-      </div>
-      <div class="w-full h-px bg-slate-200 mt-12"></div>
-    </header>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
-      <!-- COLUNA DA ESQUERDA: O DOCUMENTO -->
-      <div class="lg:col-span-8 space-y-12">
-        <div class="bg-white rounded-[3rem] shadow-2xl shadow-slate-200 border border-slate-100 overflow-hidden">
-
-          <div class="p-8 md:p-16 lg:p-20">
-
-            <!-- SEÇÃO I: FUNDAMENTAÇÃO (Docs) -->
-            {docs.length > 0 && (
-              <section class="mb-24">
-                <div class="flex items-center gap-4 mb-12 no-print">
-                    <span class="bg-blue-600 text-white font-black px-3 py-1 rounded-lg text-xs">I</span>
-                    <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Exposição de Motivos</h2>
+                <div class="flex items-center gap-2">
+                  <span class={`w-3 h-3 rounded-full ${heatColor(heat)}`}></span>
+                  <span class="text-xs uppercase text-slate-400">
+                    impacto {heat}
+                  </span>
                 </div>
-                {docs.map(doc => (
-                  <div class="relative group mb-16 last:mb-0">
-                    <div class="markdown-content prose-legal" set:html={doc.html} />
-                    <EditButton path={doc.gitPath} repo={config.github_repo} />
-                  </div>
-                ))}
-              </section>
-            )}
 
-            <!-- DIVISOR ESTILIZADO -->
-            <div class="py-12 flex items-center justify-center no-print">
-                <div class="h-px w-24 bg-slate-100"></div>
-                <div class="px-6 text-slate-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
-                </div>
-                <div class="h-px w-24 bg-slate-100"></div>
+              </div>
+
+              <!-- MARKDOWN CORRETO -->
+              <div class="p-6 prose-legal" set:html={art.html}></div>
+
+              <EditButton path={art.gitPath} repo={config.github_repo} />
+
             </div>
 
-            <!-- SEÇÃO II: ARTIGOS (artigos) -->
-            {artigos.length > 0 && (
-              <section>
-                <div class="flex items-center gap-4 mb-12 no-print">
-                    <span class="bg-blue-600 text-white font-black px-3 py-1 rounded-lg text-xs">II</span>
-                    <h2 class="text-xs font-black text-slate-400 uppercase tracking-[0.4em]">Texto Normativo</h2>
-                </div>
-                <div class="space-y-8">
-                  {artigos.map(art => (
-                    <div class="relative group p-8 md:p-12 bg-slate-50 rounded-[2.5rem] border border-transparent hover:border-blue-200 hover:bg-white transition-all shadow-sm hover:shadow-xl">
-                      <div class="markdown-content prose-legal" set:html={art.html} />
-                      <EditButton path={art.gitPath} repo={config.github_repo} />
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-          </div>
-
-          <div class="bg-slate-900 p-12 text-center">
-            <p class="text-slate-500 font-black uppercase text-[9px] tracking-[0.3em] mb-3">Fim do Rascunho Legislativo</p>
-            <p class="text-white/30 text-[10px] italic max-w-xs mx-auto">
-                Este documento é um rascunho dinâmico gerado pela LexLab Engine sob princípios do Direito Achado na Rua.
-            </p>
-          </div>
-        </div>
-
-        <!-- FÓRUM DE DEBATE (COMMENTS) -->
-        <Comments />
-      </div>
-
-      <!-- COLUNA DA DIREITA: METADADOS E GOVERNANÇA -->
-      <aside class="lg:col-span-4 space-y-8 no-print">
-        <div class="sticky top-28 space-y-8">
-
-          <!-- Card Tutorial Rápido -->
-          <div class="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl border border-slate-800">
-            <h4 class="font-black text-[10px] uppercase tracking-[0.2em] mb-4 text-blue-400">Como auditar</h4>
-            <p class="text-sm leading-relaxed text-slate-400 mb-6">
-                Você pode propor alterações técnicas clicando nos botões de edição dentro de cada card. Sua sugestão será enviada para análise técnica.
-            </p>
-            <a href="/como-contribuir" class="block text-center py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-xs font-bold transition-all uppercase tracking-widest">
-                Ver manual completo
-            </a>
-          </div>
-
-          <!-- Módulo de Contribuidores do GitHub -->
-          <Contributors repo={config.github_repo} />
-
-          <!-- Metadados Técnicos -->
-          <div class="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm">
-            <h4 class="font-black text-[10px] text-slate-400 uppercase tracking-widest mb-6 border-b pb-4">Identificação</h4>
-            <div class="space-y-5 text-sm">
-                <div>
-                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Identificador</label>
-                    <code class="text-blue-600 font-mono font-bold bg-blue-50 px-2 py-1 rounded-md">{config.id}</code>
-                </div>
-                <div>
-                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Repositório Originário</label>
-                    <a href={config.github_repo} target="_blank" class="text-slate-700 font-bold hover:text-blue-600 underline break-all truncate block">
-                        GitHub Source
-                    </a>
-                </div>
-                <div>
-                    <label class="block text-[9px] uppercase text-slate-400 font-black mb-1">Pacto Federativo</label>
-                    <span class="text-green-600 font-bold uppercase text-xs">Respeitado (LINDB)</span>
-                </div>
+            <!-- DIFF -->
+            <div class="bg-white border rounded-xl p-4">
+              <h4 class="text-xs uppercase font-black text-slate-400 mb-2">
+                Diferença
+              </h4>
+              <div class="text-sm" set:html={diff}></div>
             </div>
-          </div>
 
-          <!-- Ação Principal -->
-          <button onclick="window.print()" class="w-full py-5 bg-slate-900 hover:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-            Imprimir PDF
-          </button>
-        </div>
-      </aside>
+            <!-- COMPARAÇÃO -->
+            <div class="grid md:grid-cols-2 gap-4">
+
+              <div class="bg-red-50 border rounded-xl p-4">
+                <h4 class="text-xs font-bold text-red-600 mb-2">
+                  Versão anterior
+                </h4>
+                <pre class="text-xs whitespace-pre-wrap">{prev}</pre>
+              </div>
+
+              <div class="bg-green-50 border rounded-xl p-4">
+                <h4 class="text-xs font-bold text-green-600 mb-2">
+                  Versão atual
+                </h4>
+                <pre class="text-xs whitespace-pre-wrap">{art.raw}</pre>
+              </div>
+
+            </div>
+
+            <!-- SEMÂNTICA -->
+            <div class="bg-white border rounded-xl p-4">
+              <p class="text-sm">⚖️ {semantic}</p>
+            </div>
+
+          </div>
+        );
+      })}
+
+      <Comments />
 
     </div>
-  </main>
+
+    <!-- SIDEBAR -->
+    <aside class="lg:col-span-4 space-y-6">
+
+      <div class="sticky top-24 space-y-6">
+        <Contributors repo={config.github_repo} />
+      </div>
+
+    </aside>
+
+  </div>
+
+</main>
+
 </BaseLayout>
 
 
@@ -8832,7 +9881,7 @@ jobs:
 
 {
 	"_variables": {
-		"lastUpdateCheck": 1774205949979
+		"lastUpdateCheck": 1774219017230
 	}
 }
 
@@ -8851,40 +9900,35 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Pega o caminho absoluto da raiz do projeto independente de onde o script é chamado
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 const LEIS_DIR = path.join(ROOT_DIR, 'src', 'leis', 'src', 'projetos-leis');
 
-const REQUIRED_CONFIG_FIELDS = ['id', 'titulo', 'autor', 'status', 'tags', 'github_repo'];
+// Configurações do Linter
+const MIN_EXPOSICAO_WORDS = 100; // Mínimo de palavras na justificativa
+const REQUIRED_FIELDS = ['id', 'titulo', 'autor', 'status', 'esfera', 'localizacao'];
+const REQUIRED_LOC_FIELDS = ['pais', 'estado', 'municipio'];
 
 let hasError = false;
 
-console.log(`🔍 Buscando leis em: ${LEIS_DIR}`);
+console.log(`\n⚖️  Linter Legislativo LexLab: Iniciando auditoria técnica...\n`);
 
 if (!fs.existsSync(LEIS_DIR)) {
-    console.error("❌ Erro: Diretório 'src/projetos-leis' não encontrado.");
-    console.error("Verifique se a pasta foi criada e se o nome está correto.");
+    console.error("❌ Erro Crítico: Diretório de leis não encontrado.");
     process.exit(1);
 }
 
-const folders = fs.readdirSync(LEIS_DIR).filter(f =>
-fs.lstatSync(path.join(LEIS_DIR, f)).isDirectory()
-);
+const projects = fs.readdirSync(LEIS_DIR).filter(f => fs.lstatSync(path.join(LEIS_DIR, f)).isDirectory());
 
-if (folders.length === 0) {
-    console.error("❌ Erro: Nenhuma pasta de projeto encontrada dentro de 'src/projetos-leis'.");
-    process.exit(1);
-}
+projects.forEach(folder => {
+    const pPath = path.join(LEIS_DIR, folder);
+    const configPath = path.join(pPath, 'config.json');
 
-folders.forEach(folder => {
-    const projectPath = path.join(LEIS_DIR, folder);
-    const configPath = path.join(projectPath, 'config.json');
+    console.log(`📂 Auditando: [${folder}]`);
 
-    console.log(`\n📂 Verificando projeto: [${folder}]`);
-
+    // 1. Validação do config.json
     if (!fs.existsSync(configPath)) {
-        console.error(`  ❌ Erro: Arquivo 'config.json' ausente em ${folder}`);
+        console.error(`   ❌ Falha: config.json ausente.`);
         hasError = true;
         return;
     }
@@ -8892,23 +9936,64 @@ folders.forEach(folder => {
     try {
         const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 
-        REQUIRED_CONFIG_FIELDS.forEach(field => {
-            if (!config[field]) {
-                console.error(`  ❌ Erro: Campo obrigatório '${field}' faltando no config.json`);
+        // Verifica campos base
+        REQUIRED_FIELDS.forEach(f => {
+            if (!config[f]) {
+                console.error(`   ❌ Falha: Campo '${f}' é obrigatório.`);
                 hasError = true;
             }
         });
 
+        // Verifica campos de localização
+        if (config.localizacao) {
+            REQUIRED_LOC_FIELDS.forEach(lf => {
+                if (!config.localizacao[lf]) {
+                    console.error(`   ❌ Falha: Campo 'localizacao.${lf}' é obrigatório.`);
+                    hasError = true;
+                }
+            });
+        }
     } catch (e) {
-        console.error(`  ❌ Erro: 'config.json' em ${folder} contém um JSON inválido.`);
+        console.error(`   ❌ Falha: JSON inválido.`);
         hasError = true;
+    }
+
+    // 2. Validação da Exposição de Motivos (Docs)
+    const docsPath = path.join(pPath, 'docs');
+    if (fs.existsSync(docsPath)) {
+        const docs = fs.readdirSync(docsPath).filter(f => f.endsWith('.md'));
+        let totalWords = 0;
+        docs.forEach(d => {
+            const content = fs.readFileSync(path.join(docsPath, d), 'utf-8');
+            totalWords += content.split(/\s+/).length;
+        });
+
+        if (totalWords < MIN_EXPOSICAO_WORDS) {
+            console.error(`   ⚠️  Aviso: Justificativa técnica muito curta (${totalWords} palavras). Mínimo sugerido: ${MIN_EXPOSICAO_WORDS}.`);
+        }
+    }
+
+    // 3. Validação da Estrutura Normativa (Artigos)
+    const artsPath = path.join(pPath, 'artigos');
+    if (fs.existsSync(artsPath)) {
+        const arts = fs.readdirSync(artsPath).filter(f => f.endsWith('.md'));
+        arts.forEach(artFile => {
+            const content = fs.readFileSync(path.join(artsPath, artFile), 'utf-8');
+            const hasArtHeader = content.match(/(Art\.|Artigo)\s+\d+/i);
+            if (!hasArtHeader) {
+                console.error(`   ❌ Falha em ${artFile}: O texto deve conter a marcação 'Art. X' ou 'Artigo X'.`);
+                hasError = true;
+            }
+        });
     }
 });
 
+console.log("\n--------------------------------------------------");
 if (hasError) {
+    console.log("❌ O Linter encontrou erros técnicos graves. Corrija-os antes do commit.");
     process.exit(1);
 } else {
-    console.log("\n✅ Validação concluída com sucesso!");
+    console.log("✅ Auditoria concluída! O projeto segue os padrões da LexLab.");
     process.exit(0);
 }
 

@@ -1,13 +1,35 @@
-# Dependências
+# Node
 node_modules/
-
-# Cache e builds
-dist/
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Variáveis de ambiente (Segurança)
+# Build
+dist/
+.build/
+.astro/
+
+# Env
 .env
-.env.production
+.env.*
+!.env.example
 
-# Arquivos do Sistema
+# Logs
+logs/
+*.log
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Python (caso use scripts)
+__pycache__/
+*.pyc
+
+# Misc
+coverage/
+.tmp/
